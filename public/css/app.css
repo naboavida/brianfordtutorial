@@ -79,11 +79,11 @@ body{
 }
 .leftDiv{
     float: left;
-    width: 40%;
+    width: 30%;
 }
 .rightDiv{
     float: left;
-    width: 60%;
+    width: 70%;
 }
 .topBarDiv{
     width: 100%;
