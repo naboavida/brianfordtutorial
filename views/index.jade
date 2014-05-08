@@ -8,9 +8,12 @@ block body
       li(style='float:left')
         a(href='/') Home
       li(style='float:left')
-        a(href='/addPost') Add a new Widget
+        a(href='/addPost') Add Widget
   div.mainDiv
-    div(ng-view)
+    div.leftDiv
+      p asd
+    div.rightDiv
+      div(ng-view)
 
   script(src='js/lib/angular/angular.js')
   script(src='js/app.js')

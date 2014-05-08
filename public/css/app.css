@@ -53,25 +53,24 @@ body{
 }
 
 .item{
-  float:left;
-  width:150px;
-  height:150px;
-  list-style-type: none;
-  
+    float:left;
+    width:150px;
+    height:150px;
+    list-style-type: none;
     background-color: white;
-
     border: 1px #bbb solid;
-
-  text-align: center;
-  
-  margin-left: 15px;
-  margin-right: 15px;
-    margin-bottom: 35px;
-  color:#292E37;
-  /*font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;*/
-  font-size: 1em;
-  line-height: 150%;
+    text-align: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 28px;
+    color:#292E37;
+    font-size: 1em;
+    line-height: 150%;
     border-radius: 8px;
+}
+.big-item{
+    width: 330px;
+    height: 330px;
 }
 
 .mainDiv{
@@ -102,3 +101,22 @@ body{
 .topBarDiv ul{
   float: right;
 }
+
+
+.widgetContent{
+  margin-top: 25px;
+}
+.widgetTitle{
+  /*margin-top: 25px;*/
+  margin-bottom:15px;
+}
+.value{
+    font-size: 2em;
+    margin-bottom:15px;
+}
+.unit{
+    vertical-align: bottom;
+    margin-left:5px!important;
+    font-size: 0.6em;
+}
+
