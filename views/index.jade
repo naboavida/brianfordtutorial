@@ -1,14 +1,15 @@
 extends layout
 
 block body
-  div
-    h2 My Blog
+  div.topBarDiv
+    img(src='img/logo.png')
+    h2 My Dashboard
     ul
-      li
+      li(style='float:left')
         a(href='/') Home
-      li
-        a(href='/addPost') Add a new Post
-
+      li(style='float:left')
+        a(href='/addPost') Add a new Widget
+  div.mainDiv
     div(ng-view)
 
   script(src='js/lib/angular/angular.js')

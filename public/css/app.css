@@ -28,3 +28,77 @@
   content: "";
   padding: 0;
 }
+
+
+
+
+
+
+
+*{
+    margin:0;
+    padding:0;
+    font-weight:normal;
+}
+body{
+  font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  background-color: #eee;
+  height:100%;
+  width:100%;
+}
+
+.list-item{
+  display:inline-block;
+  margin:25px;
+}
+
+.item{
+  float:left;
+  width:150px;
+  height:150px;
+  list-style-type: none;
+  
+    background-color: white;
+
+    border: 1px #bbb solid;
+
+  text-align: center;
+  
+  margin-left: 15px;
+  margin-right: 15px;
+    margin-bottom: 35px;
+  color:#292E37;
+  /*font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;*/
+  font-size: 1em;
+  line-height: 150%;
+    border-radius: 8px;
+}
+
+.mainDiv{
+    display:inline-block;
+    width: 100%
+}
+.leftDiv{
+    float: left;
+    width: 40%;
+}
+.rightDiv{
+    float: left;
+    width: 60%;
+}
+.topBarDiv{
+    width: 100%;
+    height: 75px;
+    background-color: #fff;
+    border-bottom: 1px solid #bbb;
+    display: block;
+}
+.topBarDiv img{
+  float: left;
+}
+.topBarDiv h2{
+  float: center;
+}
+.topBarDiv ul{
+  float: right;
+}
