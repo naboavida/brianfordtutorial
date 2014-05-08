@@ -102,6 +102,20 @@ body{
   float: right;
 }
 
+.leftBarDiv{
+    float:left;
+    margin: 15px 25px;
+}
+.rightBarDiv{
+    float:right;
+    margin: 15px 25px;
+}
+
+
+.leftDivContent{
+    margin: 25px;
+}
+
 
 .widgetContent{
   margin-top: 25px;
