@@ -80,6 +80,9 @@ body{
     width: 330px;
     height: 330px;
 }
+.semaphoreChart{
+    margin-top: 40px;
+}
 
 .mainDiv{
     /*display:inline-block;*/

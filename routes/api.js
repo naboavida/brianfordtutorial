@@ -1,3 +1,5 @@
+var mysql = require('mysql');
+
 /*
  * Serve JSON to our AngularJS client
  */
@@ -60,6 +62,17 @@ var data = {
       "alarm": "no",
       "notes": "no"
     }
+  ],
+  "masterPosts": [
+    {
+      "title": "Qualidade da Água",
+      "text": "Boa",
+      "unit": "",
+      "colorRGB1": "200,200,200",
+      "color1": "#666",
+      "colorRGB2": "0,255,0",
+      "color2": "#0f0"
+    }
   ]
 };
 
@@ -67,6 +80,7 @@ var data = {
 
 exports.posts = function (req, res) {
   var posts = [];
+  var masterPosts = [];
   data.posts.forEach(function (post, i) {
     posts.push({
       id: i,
@@ -79,8 +93,24 @@ exports.posts = function (req, res) {
     });
     // console.log(posts);
   });
+  data.masterPosts.forEach(function (post, i) {
+    masterPosts.push({
+      id: i,
+      title: post.title,
+      // text: post.text.substr(0, 50),
+      text: post.text,
+      unit: post.unit,
+      colorRGB1: post.colorRGB1,
+      color1: post.color1,
+      colorRGB2: post.colorRGB2,
+      color2: post.color2
+    });
+    // console.log(posts);
+  });
+  // console.log(masterPosts);
   res.json({
-    posts: posts
+    posts: posts,
+    masterPosts : masterPosts
   });
 };
 

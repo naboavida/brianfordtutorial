@@ -1,15 +1,24 @@
 //- p There are {{posts.length}} widgets
 ul.list-item
-	li.item.big-item
+	li.item.big-item(ng-repeat='masterPost in masterPosts')
 		div.widgetContent
 			div.itemOptions
-				a.unit(href='readPost/{{post.id}}') More
+				a.unit(href='readPost/{{masterPost.id}}') More
 				| 
-				a.unit(href='editPost/{{post.id}}') Edit
+				a.unit(href='editPost/{{masterPost.id}}') Edit
 				| 
-				a.unit(href='deletePost/{{post.id}}') Delete
-			h3.widgetTitle Water Quality
-			div.value Boa
+				a.unit(href='deletePost/{{masterPost.id}}') Delete
+			h3.widgetTitle {{masterPost.title}}
+			div.line
+				div.line-item.value {{masterPost.text}}
+				div.line-item.unit {{masterPost.unit}}
+			div.semaphoreChart
+				svg(width="150px", height="60px")
+					path(d="M 1 1 L 149 1 L 149 59 L 1 59 L 1 1", 
+					    stroke="rgba(170, 170, 51, 0.5)", fill="#ee9", 
+					    stroke-width="1")
+					circle(style='stroke-width:5;stroke:rgba({{masterPost.colorRGB1}},0.25)', cx="40", cy="30", r="20", fill="{{masterPost.color1}}")
+					circle(style='stroke-width:5;stroke:rgba({{masterPost.colorRGB2}},0.25)', cx="110", cy="30", r="20", fill="{{masterPost.color2}}")
 	li.item(ng-repeat='post in posts')
 		div.widgetContent
 			div.itemOptions
