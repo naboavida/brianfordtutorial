@@ -18,6 +18,26 @@ var data = {
     {
       "title": "Ferro",
       "text": "334"
+    },
+    {
+      "title": "Nitratos",
+      "text": "12"
+    },
+    {
+      "title": "Pedra",
+      "text": "6"
+    },
+    {
+      "title": "Cal",
+      "text": "13"
+    },
+    {
+      "title": "Fertilizantes",
+      "text": "7"
+    },
+    {
+      "title": "Alumínio",
+      "text": "334"
     }
   ]
 };

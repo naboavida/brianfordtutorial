@@ -1,14 +1,17 @@
 extends layout
 
 block body
-  div.topBarDiv
-    img(src='img/logo.png')
-    h2 My Dashboard
-    ul
-      li(style='float:left')
-        a(href='/') Home
-      li(style='float:left')
-        a(href='/addPost') Add Widget
+  header
+    div.wrap
+      a#logo(href='/')
+      h2 My Dashboard
+      ul
+        li(style='float:left')
+          div.button
+            a(href='/') Home
+        li(style='float:left')
+          div.button
+            a(href='/addPost') Add Widget
   div.mainDiv
     div.leftDiv
       div.leftDivContent

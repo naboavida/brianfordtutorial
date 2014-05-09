@@ -74,32 +74,49 @@ body{
 }
 
 .mainDiv{
-    display:inline-block;
-    width: 100%
+    /*display:inline-block;*/
+    max-width: 1600px;
+    margin: 0 auto;
 }
 .leftDiv{
     float: left;
-    width: 30%;
+    width: 35%;
 }
 .rightDiv{
     float: left;
-    width: 70%;
+    width: 65%;
 }
-.topBarDiv{
+header{
     width: 100%;
     height: 75px;
     background-color: #fff;
     border-bottom: 1px solid #bbb;
-    display: block;
+    /*display: block;*/
+    -webkit-box-shadow: 0 0 5px 2px #999;
+    box-shadow: 0 0 4px 2px #999;
 }
-.topBarDiv img{
+header .wrap{
+  max-width: 1600px;
+  margin: 0 auto;
+}
+header #logo{
+  /*float: left;*/
+  display: block;
   float: left;
+  background: url(../img/logo.png);
+  width: 251px;
+  height: 49px;
+  margin-top: 13px;
 }
-.topBarDiv h2{
-  float: center;
+header h2{
+  /*float: center;*/
+  float:left;
+  margin-top: 19px;
+  margin-left: 20px;
 }
-.topBarDiv ul{
+header ul{
   float: right;
+  margin-top: 21px;
 }
 
 .leftBarDiv{
@@ -116,6 +133,22 @@ body{
     margin: 25px;
 }
 
+
+li{
+  list-style-type: none;
+}
+.button:hover{
+  background-color: #aeaeae;
+}
+
+.button{
+  padding:5px;
+  margin: 0 10px;
+  height: 25px;
+}
+.button a{
+  text-decoration: none;
+}
 
 .widgetContent{
   margin-top: 25px;
