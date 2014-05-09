@@ -1,7 +1,20 @@
 h2 Input data for Widget
-label(for='title') Title: 
-input(ng-model='form.title', name='title')
-p Body:
-textarea(ng-model='form.text', cols='50', rows='15')
+div
+	label(for='title') Title:
+	input(ng-model='form.title', name='title')
+div
+	label(for='text') Value:
+	input(ng-model='form.text', name='value', type='number')
+div
+	label(for='unit') Unit:
+	input(ng-model='form.unit', name='unit')
+div
+	label(for='alarm') Alarm:
+	input(ng-model='form.alarm', name='alarm')
+div
+	label(for='notes') Notes:
+	input(ng-model='form.notes', name='notes')
+//- p Body:
+//- textarea(ng-model='form.text', cols='50', rows='15')
 p
 	button(ng-click='submitPost()') Submit Post

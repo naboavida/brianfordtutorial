@@ -68,6 +68,14 @@ body{
     line-height: 150%;
     border-radius: 8px;
 }
+.itemOptions{
+  /*display: none;*/
+  visibility: hidden;
+}
+.widgetContent:hover > .itemOptions{
+  /*display: block;*/
+  visibility: visible;
+}
 .big-item{
     width: 330px;
     height: 330px;
@@ -77,6 +85,7 @@ body{
     /*display:inline-block;*/
     max-width: 1600px;
     margin: 0 auto;
+    margin-top: 25px;
 }
 .leftDiv{
     float: left;
@@ -132,6 +141,26 @@ header ul{
 .leftDivContent{
     margin: 25px;
 }
+.areaInfo{
+    height: 185px;
+}
+.leftInfoDiv{
+    float: left;
+    width: 150px;
+    /*margin-right: 25px;*/
+}
+.rightInfoDiv{
+    float: left;
+    width: 70%;
+    /*padding-left: 25px;*/
+}
+
+
+.thumbnail{
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+}
 
 
 li{
@@ -151,11 +180,19 @@ li{
 }
 
 .widgetContent{
-  margin-top: 25px;
+  /*margin-top: 25px;*/
+  background-color: transparent;
+  height: 150px;
 }
 .widgetTitle{
-  /*margin-top: 25px;*/
+  margin-top: 10px;
   margin-bottom:15px;
+}
+.line{
+    display: inline-block;
+}
+.line-item{
+    float: left;
 }
 .value{
     font-size: 2em;
@@ -167,3 +204,19 @@ li{
     font-size: 0.6em;
 }
 
+
+.bottomRow{
+  margin: 0 auto;
+  width: 42px;
+}
+.no{
+  visibility: hidden;
+  float: left;
+}
+.yes{
+  visibility: visible;
+  float: left;
+}
+/*.alarm{
+  background: url(../img/alarm.png);
+}*/

@@ -60,7 +60,8 @@ function EditPostCtrl($scope, $http, $location, $routeParams) {
   $scope.editPost = function () {
     $http.put('/api/post/' + $routeParams.id, $scope.form).
       success(function(data) {
-        $location.url('/readPost/' + $routeParams.id);
+        // $location.url('/readPost/' + $routeParams.id);
+        $location.path('/');
       });
   };
 }
