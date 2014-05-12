@@ -1,4 +1,6 @@
 //- p There are {{posts.length}} widgets
+div
+	a(ng-repeat='toSendId in toSendIds', href='/{{toSendId.id}}', style='margin-right:5px;') {{toSendId.id}}
 ul.list-item
 	li.item.big-item(ng-repeat='masterPost in masterPosts')
 		div.widgetContent

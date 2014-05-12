@@ -25,6 +25,10 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
         templateUrl: 'partials/deletePost',
         controller: DeletePostCtrl
       }).
+      when('/:id', {
+        templateUrl: 'partials/index',
+        controller: IndexCtrl
+      }).
       otherwise({
         redirectTo: '/'
       });
