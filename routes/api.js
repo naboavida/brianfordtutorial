@@ -8,18 +8,18 @@ var connection = mysql.createConnection({
 });
 
 // read IDs (a test for now...)
-var ids = [];
+var ids = [{"id":"223"}, {"id":"225"}];
 
 var readings = [];
 var data = [];
 var data2 = [];
 data2["posts"] = [];
-var def_reading_id = '236';
+var def_reading_id = '223';
 
 
 // function readIdsFromMySqlTest($scope){
 connection.connect(function(err) {
-  if (err) throw err;
+  // if (err) throw err;
 });
 
 	// connection.end();
@@ -42,10 +42,12 @@ function translateName(db_name){
 
 function readReadingsFromDbById(id){
 	var query_string = 'SELECT ph,cor,ferro,cobre,cianeto,amonia,nitrito,nitrato,turvacao,temperatura,coliformestotais FROM geoaqua_leituras where id='+id;
-	console.log("query is: "+query_string);
+	// console.log("query is: "+query_string);
 
 	connection.query(query_string, function(err, rows, fields) {
-	  if (err) throw err;
+	  // if (err) throw err;
+	  if (err) return;
+
 	  // console.log('The solution is: ', rows);
 	  // console.log(rows);
 	  
@@ -95,7 +97,7 @@ function readReadingsFromDbById(id){
       
   });
 
-  console.log("read sent");
+  // console.log("read sent");
 };
 
 var readings = [];
@@ -103,13 +105,15 @@ var data = [];
 var masterData = [];
 var data2 = [];
 data2["posts"] = [];
-var def_reading_id = '236';
+
 	// connection.connect(function(err) {
 	//   if (err) throw err;
 	// });
 	var query_string = 'SELECT ph,cor,ferro,cobre,cianeto,amonia,nitrito,nitrato,turvacao,temperatura,coliformestotais FROM geoaqua_leituras where id='+def_reading_id;
 	connection.query(query_string, function(err, rows, fields) {
-	  if (err) throw err;
+	  // if (err) throw err;
+	  if (err) return;
+
 	  // console.log('The solution is: ', rows);
 	  // console.log(rows);
 	  
@@ -143,29 +147,60 @@ var def_reading_id = '236';
 
 
 
-connection.query('SELECT id FROM geoaqua_leituras limit 30', function(err, rows, fields) {
-  if (err) throw err;
-  // console.log('The solution is: ', rows);
-  ids = rows;
-  ids.forEach(function (obj){
-  	readReadingsFromDbById(obj.id);
-  })
-  
-});
-
-/*
- * Serve JSON to our AngularJS client
- */
-
-exports.name = function (req, res) {
-  res.json({
-    name: 'Bob'
-  });
-};
-
 
 data = {
-  "posts": [
+  "223": [
+    {
+      "title": "Coliformes",
+      "text": "2",
+      "unit": "UFC/0.1l",
+      "alarm": "yes",
+      "notes": "yes"
+    },
+    {
+      "title": "Ferro",
+      "text": "334",
+      "unit": "mg/l",
+      "alarm": "yes",
+      "notes": "no"
+    },
+    {
+      "title": "Nitratos",
+      "text": "4",
+      "unit": "mg/l",
+      "alarm": "no",
+      "notes": "yes"
+    },
+    {
+      "title": "Pedra",
+      "text": "1",
+      "unit": "mg/l",
+      "alarm": "no",
+      "notes": "no"
+    },
+    {
+      "title": "Cal",
+      "text": "3",
+      "unit": "mg/l",
+      "alarm": "no",
+      "notes": "no"
+    },
+    {
+      "title": "Fertilizantes",
+      "text": "1",
+      "unit": "mg/l",
+      "alarm": "no",
+      "notes": "no"
+    },
+    {
+      "title": "Alumínio",
+      "text": "33",
+      "unit": "mg/l",
+      "alarm": "no",
+      "notes": "no"
+    }
+  ],
+  "225": [
     {
       "title": "Coliformes",
       "text": "6",
@@ -221,6 +256,29 @@ data = {
 // console.log(data);
 // console.log(data2);
 
+masterData[ids[0].id] = [
+    {
+      "title": "Qualidade da Água",
+      "text": "Boa",
+      "unit": "",
+      "colorRGB1": "200,200,200",
+      "color1": "#666",
+      "colorRGB2": "0,255,0",
+      "color2": "#0f0"
+    }
+  ];
+masterData[ids[1].id] = [
+    {
+      "title": "Qualidade da Água",
+      "text": "Má",
+      "unit": "",
+      "colorRGB2": "200,200,200",
+      "color2": "#666",
+      "colorRGB1": "255,0,0",
+      "color1": "#f00"
+    }
+  ];
+
 data.masterPosts = [
     {
       "title": "Qualidade da Água",
@@ -232,6 +290,36 @@ data.masterPosts = [
       "color2": "#0f0"
     }
   ];
+
+
+
+
+
+
+connection.query('SELECT id FROM geoaqua_leituras limit 30', function(err, rows, fields) {
+  // if (err) throw err;
+  if (err) ; else ids = rows;
+
+  console.log('The solution is: ', ids);
+  
+  ids.forEach(function (obj){
+  	readReadingsFromDbById(obj.id);
+  })
+  
+});
+
+/*
+ * Serve JSON to our AngularJS client
+ */
+
+exports.name = function (req, res) {
+  res.json({
+    name: 'Bob'
+  });
+};
+
+
+
 
 
 // ,
@@ -254,25 +342,25 @@ exports.posts = function (req, res) {
   var masterPosts = [];
   var toSendIds = [];
 
-  console.log("API call: posts" + req.params.id);
+  // console.log("API call: posts" + req.params.id);
 
 
   ids.forEach(function (id){
   	toSendIds.push(id);
   });
   // console.log(toSendIds);
-  data.posts.forEach(function (post, i) {
-    posts.push({
-      id: i,
-      title: post.title,
-      // text: post.text.substr(0, 50),
-      text: post.text,
-      unit: post.unit,
-      alarm: post.alarm,
-      notes: post.notes
-    });
-    // console.log(posts);
-  });
+  // data.posts.forEach(function (post, i) {
+  //   posts.push({
+  //     id: i,
+  //     title: post.title,
+  //     // text: post.text.substr(0, 50),
+  //     text: post.text,
+  //     unit: post.unit,
+  //     alarm: post.alarm,
+  //     notes: post.notes
+  //   });
+  //   // console.log(posts);
+  // });
 
   var togoposts = [];
   if(req.params.id != null){
@@ -323,7 +411,7 @@ exports.posts = function (req, res) {
 
 
   if(req.params.id != null){
-  	console.log(req.params.id);
+  	// console.log(req.params.id);
   	def_reading_id = req.params.id;
   	// readReadingsFromDbById(req.params.id);
   	// data.posts = togoposts;
@@ -336,7 +424,7 @@ exports.posts = function (req, res) {
 	  });
   }
   else {
-  	console.log("req.params.id is null");
+  	// console.log("req.params.id is null");
   	res.json({
 	    // posts: posts,
 	    posts: togoposts,
@@ -354,7 +442,7 @@ exports.posts = function (req, res) {
 
 exports.post = function (req, res) {
   var id = req.params.id;
-  console.log("API call: post.");
+  // console.log("API call: post.");
   if (id >= 0 && id < data[def_reading_id].length) {
     res.json({
       post: data[def_reading_id][id]
