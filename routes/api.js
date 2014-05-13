@@ -15,11 +15,13 @@ var data = [];
 var data2 = [];
 data2["posts"] = [];
 var def_reading_id = '223';
-
+var def_limit_read = '160';
+var ids_positions = [{"id":"223", "lat":"0.194333333333", "lon":"6.69913888889"}, {"id":"225", "lat":"0.195861111111", "lon":"6.68877777778"}];
+var connection_active = false;
 
 // function readIdsFromMySqlTest($scope){
 connection.connect(function(err) {
-  // if (err) throw err;
+  if (err) return; else connection_active=true;
 });
 
 	// connection.end();
@@ -67,7 +69,7 @@ function readReadingsFromDbById(id){
 			}
     	}
       }
-      console.log("read done...");
+      // console.log("read done...");
       data[id] = data2;
 
       if(coli > coliThreshold) {
@@ -94,6 +96,8 @@ function readReadingsFromDbById(id){
 		    }
 		  ];
       }
+
+
       
   });
 
@@ -144,6 +148,115 @@ data2["posts"] = [];
 	// connection.end();
 
 
+
+
+
+// if(connection_active){
+//   ids_positions = [];
+
+
+
+// }
+
+
+// var query_string = 'SELECT id_ponto FROM geoaqua_leituras where id='+aux_id;
+var query_string = 'SELECT id,id_ponto FROM geoaqua_leituras limit '+def_limit_read;
+  console.log("query is: "+query_string);
+
+  connection.query(query_string, function(err, rows, fields) {
+    // if (err) throw err;
+    if (err) return;
+
+    // console.log('The solution is: ', rows);
+    // console.log(rows);
+    
+    // data2["posts"] = rows;
+    // console.log("data");
+    // console.log(data);
+    ids_positions = [];
+
+    rows.forEach(function (elem){
+      // console.log(elem.id_ponto);
+
+      // console.log("read ids_geo done...");
+      // console.log("p: "+elem.id_ponto);
+
+      // tirar o cod_sistema e o codigo
+      // fazer query com os dois acima
+      var q_codigo = elem.id_ponto.substring(0,4);
+      var q_cod_sistema = elem.id_ponto.substring(5,9);
+
+      
+
+      if(q_codigo.length == 4 && q_cod_sistema.length > 2){
+        var newquery = 'select geoaqua_leituras.id, x, y from geoaqua_fontenariorede inner join geoaqua_leituras where codigo="'+q_cod_sistema+'" and cod_sistema="'+q_codigo+'"';
+
+        connection.query(newquery, function(err, rows, fields) {
+          if (err) throw err;
+
+          // console.log("rows");
+          // console.log(rows);
+          // console.log(fields);
+          if(rows[0] != undefined){
+            // console.log('The solution22 is: ', rows);
+            var obj = { "id" : elem.id, "lat" : rows[0].y, "lon": rows[0].x};
+            ids_positions.push(obj);
+          }
+
+          
+          
+        });
+      }
+      
+
+      // console.log("read ids_geo done..."+newquery);
+
+    });
+
+    for(var p in rows[0]){
+      if (rows[0].hasOwnProperty(p) ) {
+        // console.log(p + " " + rows[0][p]);
+        // var obj = { "id" : p, "lat" : rows[0][p], "lon": "mg/l"};
+        // ids_positions.push(obj);
+
+
+        // console.log("read ids_geo done...");
+        // console.log("p: "+rows[0][p]);
+
+        // // tirar o cod_sistema e o codigo
+        // // fazer query com os dois acima
+        // var q_codigo = rows[0][p].substring(0,4);
+        // var q_cod_sistema = rows[0][p].substring(5,9);
+
+        // var newquery = 'select x, y from geoaqua_fontenariorede where codigo="'+q_cod_sistema+'" and cod_sistema="'+q_codigo+'"';
+
+        // if(q_codigo.length == 4 && q_cod_sistema.length == 4){
+        //   connection.query(newquery, function(err, rows, fields) {
+        //     if (err) throw err;
+
+        //     console.log("rows");
+        //     console.log(rows);
+        //     if(rows[0] != undefined){
+        //       // console.log('The solution22 is: ', rows);
+        //       var obj = { "id" : 223, "lat" : rows[0].y, "lon": rows[0].x};
+        //       ids_positions.push(obj);
+        //     }
+
+            
+            
+        //   });
+        // }
+        
+
+        // console.log("read ids_geo done..."+newquery);
+      }
+    }
+      
+      // data[id] = data2;
+
+      
+      
+  });
 
 
 
@@ -294,13 +407,11 @@ data.masterPosts = [
 
 
 
-
-
-connection.query('SELECT id FROM geoaqua_leituras limit 30', function(err, rows, fields) {
+connection.query('SELECT id FROM geoaqua_leituras limit '+def_limit_read, function(err, rows, fields) {
   // if (err) throw err;
   if (err) ; else ids = rows;
 
-  console.log('The solution is: ', ids);
+  // console.log('The solution is: ', ids);
   
   ids.forEach(function (obj){
   	readReadingsFromDbById(obj.id);
@@ -342,7 +453,7 @@ exports.posts = function (req, res) {
   var masterPosts = [];
   var toSendIds = [];
 
-  // console.log("API call: posts" + req.params.id);
+  console.log("API call: posts" + req.params.id);
 
 
   ids.forEach(function (id){
@@ -420,7 +531,8 @@ exports.posts = function (req, res) {
 	    // posts: data[req.params.id],
 	    posts: togoposts,
 	    masterPosts : masterData[req.params.id],
-	    toSendIds : toSendIds
+	    toSendIds : toSendIds,
+      last_read_id : def_reading_id
 	  });
   }
   else {
@@ -430,7 +542,8 @@ exports.posts = function (req, res) {
 	    posts: togoposts,
 	    // masterPosts : masterPosts,
 	    masterPosts : masterData[def_reading_id],
-	    toSendIds : toSendIds
+	    toSendIds : toSendIds,
+      last_read_id : def_reading_id
 	  });
   }
 	
@@ -455,7 +568,8 @@ exports.post = function (req, res) {
 
 // POST
 exports.addPost = function (req, res) {
-  data.posts.push(req.body);
+	// console.log("API call: addPost");
+  data[def_reading_id].push(req.body);
   res.json(req.body);
 };
 
@@ -502,10 +616,17 @@ exports.editPost = function (req, res) {
 exports.deletePost = function (req, res) {
   var id = req.params.id;
 
-  if (id >= 0 && id < data.posts.length) {
-    data.posts.splice(id, 1);
+  if (id >= 0 && id < data[def_reading_id].length) {
+    data[def_reading_id].splice(id, 1);
     res.json(true);
   } else {
     res.json(false);
   }
 };
+
+exports.geoapi = function (req, res){
+	console.log("API call: geoapi");
+	// console.log(req);
+	// console.log(res);
+	res.json(ids_positions);
+}

@@ -1,6 +1,4 @@
 //- p There are {{posts.length}} widgets
-div
-	a(ng-repeat='toSendId in toSendIds', href='/{{toSendId.id}}', style='margin-right:5px;') {{toSendId.id}}
 ul.list-item
 	li.item.big-item(ng-repeat='masterPost in masterPosts')
 		div.widgetContent
@@ -33,6 +31,7 @@ ul.list-item
 			div.line
 				div.line-item.value {{post.text}}
 				div.line-item.unit {{post.unit}}
+			div(style='width:150px;height:30px;',onclick='drawBulletChart(this, {{post.text}}, 2, 7)')
 			div.bottomRow
 				div(class='{{post.alarm}}')
 					a.unit(href='readPost/{{post.id}}')
@@ -40,5 +39,8 @@ ul.list-item
 				div(class='{{post.notes}}')
 					a.unit(href='readPost/{{post.id}}')
 						img(src='img/note.png')
-
-			
+div(style='margin:0;', class='button')
+	div(ng-repeat='toSendId in toSendIds', style='float:left;')
+		a(href='/{{toSendId.id}}', style='margin-right:5px;padding-bottom:3px;') {{toSendId.id}}
+div
+	h2 last read: {{last_read_id}}

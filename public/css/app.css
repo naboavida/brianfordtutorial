@@ -92,7 +92,7 @@ body{
 }
 
 
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 1150px) {
 .leftDiv{
     float: left;
     width: 35%;
@@ -168,7 +168,7 @@ header h2{
 }
 header ul{
   float: right;
-  margin-top: 21px;
+  margin-top: 22px;
 }
 
 
@@ -193,18 +193,25 @@ header ul{
 li{
   list-style-type: none;
 }
-.button:hover{
-  background-color: #aeaeae;
+.button a:hover{
+  /*background-color: #aeaeae;*/
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  margin-top: -1px;
 }
 
 .button{
   padding:5px;
   margin: 0 10px;
   height: 25px;
+  color: black;
 }
-.button a{
+a{
   text-decoration: none;
+  color: black;
 }
+
+a:visited {text-decoration:none; color: black;}
 
 .widgetContent{
   /*margin-top: 25px;*/
@@ -212,7 +219,7 @@ li{
   height: 150px;
 }
 .widgetTitle{
-  margin-top: 10px;
+  /*margin-top: 10px;*/
   margin-bottom:15px;
 }
 .line{
@@ -228,13 +235,15 @@ li{
 .unit{
     vertical-align: bottom;
     margin-left:5px!important;
+    margin-right:5px!important;
     font-size: 0.6em;
 }
 
 
 .bottomRow{
   margin: 0 auto;
-  width: 42px;
+  /*width: 42px;*/
+  width: 52px;
 }
 .no{
   visibility: hidden;
@@ -251,7 +260,7 @@ li{
 
 
 #map {
-    height: 500px;
+    height: 510px;
     border-radius: 5px;
 }
 

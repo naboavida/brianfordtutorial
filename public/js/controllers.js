@@ -46,17 +46,18 @@ function IndexCtrl($scope, $http, $routeParams) {
       $scope.posts = data.posts;
       $scope.masterPosts = data.masterPosts;
       $scope.toSendIds = data.toSendIds;
-      console.log("yeah IndexCtrl");
+      $scope.last_read_id = data.last_read_id;
+      console.log("yeah IndexCtrl "+$scope.last_read_id);
       console.log($scope.posts);
     });
 }
 
 function AddPostCtrl($scope, $http, $location) {
   $scope.form = {};
-  console.log('/api/post');
+  console.log('AddPostCtrl /api/post');
   console.log($scope.form);
   $scope.submitPost = function () {
-    $http.post('AddPostCtrl /api/post', $scope.form).
+    $http.post('/api/post', $scope.form).
       success(function(data) {
         console.log("yeah AddPostCtrl");
         $location.path('/');
@@ -108,3 +109,7 @@ function DeletePostCtrl($scope, $http, $location, $routeParams) {
     $location.url('/');
   };
 }
+
+// function GeoApiIndex($scope, $http, $routeParams){
+//   console.log("lwlwllwlawa");
+// }
