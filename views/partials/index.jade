@@ -31,7 +31,8 @@ ul.list-item
 			div.line
 				div.line-item.value {{post.text}}
 				div.line-item.unit {{post.unit}}
-			div(style='width:150px;height:30px;',onclick='drawBulletChart(this, {{post.text}}, 2, 7)')
+			div.widgetChart(ng-controller='ExampleCtrl')
+				nvd3-line-chart(data="exampleData", width='25', height='25', showXAxis="false", showYAxis="false", tooltips="false", interactive="false")
 			div.bottomRow
 				div(class='{{post.alarm}}')
 					a.unit(href='readPost/{{post.id}}')

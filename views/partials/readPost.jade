@@ -1,7 +1,4 @@
 h3 {{post.title}}
 div {{post.text}}
-//- div#chart(style='width:100px;height:100px;')
-//- div(ng-app='sampleApp')
-//- 	div(ng-controller='nvd3Test')
-//- 		nvd3-pie-chart(data='data',width='550',height='350',y='yFunction()',showlabels='false')
-//- 			svg
+div(ng-controller='ExampleCtrl')
+	nvd3-line-chart(data="exampleData", width='500', height='250', showXAxis="true", showYAxis="true", tooltips="true", interactive="true")

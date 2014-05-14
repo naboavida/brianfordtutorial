@@ -110,6 +110,18 @@ function DeletePostCtrl($scope, $http, $location, $routeParams) {
   };
 }
 
+function ExampleCtrl($scope){
+  $scope.exampleData = [
+    {
+        "key": "Series 1",
+        "values": [ [ 0 , 7] , [ 1 , 7.2] , [ 2 , 7.5] , [ 3 , 7.2] , [ 4 , 7.6] ]
+    }
+  ];
+}
+
+
+
+
 // function GeoApiIndex($scope, $http, $routeParams){
 //   console.log("lwlwllwlawa");
 // }
