@@ -120,16 +120,27 @@ function ExampleCtrl($scope){
 }
 
 function BulletCtrl($scope){
-    // $scope.bulletData =  {
-    //     "ranges": [1, 180, 300],
-    //     "measures": [70],
-    //     "markers": [100]
-    // };
-    $scope.bulletData = {
+    $scope.bulletData =  {
         "ranges": [1, 180, 300],
         "measures": [70],
         "markers": [100]
     };
+    // $scope.bulletData1 = {
+    //     "ranges": [1, 180, 300],
+    //     "measures": [70],
+    //     "markers": [100]
+    // };
+
+    // $scope.bulletData2 = {
+    //     "ranges": [1, 180, 300],
+    //     "measures": [70],
+    //     "markers": [100]
+    // };
+
+    // $scope.bulletDataAll[
+    //   $scope.bulletData1,
+    //   $scope.bulletData2
+    // ];
 }
 
 

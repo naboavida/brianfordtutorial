@@ -31,8 +31,18 @@ ul.list-item
 			div.line
 				div.line-item.value {{post.text}}
 				div.line-item.unit {{post.unit}}
+			//- div.widgetChart
+			//- 	div(class='bulletSvg{{post.id}}', id='bulletSvg{{post.id}}')
+			//- 		//- svg(width='100', height='10')
+			//- 		svg
+			//- 		script(src='js/fillBulletCharts.js')
+			//- above is on browser
 			div.widgetChart(ng-controller='BulletCtrl')
 				nvd3-bullet-chart(data='bulletData', width='100', height='10', showXAxis="false", margin="{left:5,top:0,bottom:0,right:5}", showYAxis="false", tooltips="true", interactive="false")
+			//- below is through directive
+			//- div(ng-controller='BulletCtrl')
+			//- 	div.widgetChart(ng-repeat="bulletData in bulletDataAll | filter:post.id")
+			//- 		nvd3-bullet-chart(data='bulletData', width='100', height='10', showXAxis="false", margin="{left:5,top:0,bottom:0,right:5}", showYAxis="false", tooltips="true", interactive="false")
 			div.bottomRow
 				div(class='{{post.alarm}}')
 					a.smallButton(href='readPost/{{post.id}}')

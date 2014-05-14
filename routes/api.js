@@ -268,7 +268,12 @@ data = {
       "text": "2",
       "unit": "UFC/0.1l",
       "alarm": "yes",
-      "notes": "yes"
+      "notes": "yes",
+      "bulletData": {
+          "ranges": [1, 180, 300],
+          "measures": [70],
+          "markers": [100]
+      }
     },
     {
       "title": "Ferro",
@@ -483,7 +488,8 @@ exports.posts = function (req, res) {
 	      text: post.text,
 	      unit: post.unit,
 	      alarm: post.alarm,
-	      notes: post.notes
+	      notes: post.notes,
+        bulletData: post.bulletData
 	    });
 	    // console.log(posts);
 	  });
