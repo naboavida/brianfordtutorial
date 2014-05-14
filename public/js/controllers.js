@@ -119,7 +119,18 @@ function ExampleCtrl($scope){
   ];
 }
 
-
+function BulletCtrl($scope){
+    // $scope.bulletData =  {
+    //     "ranges": [1, 180, 300],
+    //     "measures": [70],
+    //     "markers": [100]
+    // };
+    $scope.bulletData = {
+        "ranges": [1, 180, 300],
+        "measures": [70],
+        "markers": [100]
+    };
+}
 
 
 // function GeoApiIndex($scope, $http, $routeParams){

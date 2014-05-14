@@ -71,6 +71,7 @@ body{
 .itemOptions{
   /*display: none;*/
   visibility: hidden;
+  /*border-bottom: 1px solid darkgrey;*/
 }
 .widgetContent:hover > .itemOptions{
   /*display: block;*/
@@ -90,7 +91,8 @@ body{
 .widgetChart{
   margin-left: auto;
   margin-right: auto;
-  width: 150px;
+  width: 110px;
+  height: 30px;
 }
 
 .mainDiv{
@@ -229,7 +231,8 @@ a:visited {text-decoration:none; color: black;}
 }
 .widgetTitle{
   /*margin-top: 10px;*/
-  margin-bottom:15px;
+  font-size: 12pt;
+  margin-bottom:20px;
 }
 .line{
     display: inline-block;
@@ -248,20 +251,30 @@ a:visited {text-decoration:none; color: black;}
     font-size: 0.6em;
 }
 
+.smallButton{
+  font-size: 0.6em;
+  margin-left:5px!important;
+  margin-right:5px!important;
+  padding: 0;
+}
 
 .bottomRow{
-  margin: 0 auto;
+  /*margin: 0 auto;*/
+  /*margin-top: 5px;*/
   /*width: 42px;*/
   width: 52px;
 }
 .no{
-  visibility: hidden;
+  /*visibility: hidden;*/
+  display:none;
   float: left;
 }
 .yes{
-  visibility: visible;
+  /*visibility: visible;*/
+  display: block;
   float: left;
 }
+
 /*.alarm{
   background: url(../img/alarm.png);
 }*/
@@ -276,4 +289,27 @@ a:visited {text-decoration:none; color: black;}
 .angular-leaflet-map {
     width: 640px;
     height: 480px;
+}
+
+
+
+/*
+style the bullet charts
+*/
+g text{
+  fill:#a4a4a4;
+  font-size: 6pt;
+}
+
+g .nv-tick text{
+  fill:#a4a4a4;
+  font-size: 6pt;
+}
+
+
+.widgetexample{
+  background:url(../pics/wdg.jpg);
+}
+.widgetexample2{
+  background:url(../pics/wdg2.jpg);
 }

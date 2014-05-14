@@ -22,24 +22,26 @@ ul.list-item
 	li.item(ng-repeat='post in posts')
 		div.widgetContent
 			div.itemOptions
-				a.unit(href='readPost/{{post.id}}') More
+				a.smallButton(href='readPost/{{post.id}}') More
 				| 
-				a.unit(href='editPost/{{post.id}}') Edit
+				a.smallButton(href='editPost/{{post.id}}') Edit
 				| 
-				a.unit(href='deletePost/{{post.id}}') Delete
+				a.smallButton(href='deletePost/{{post.id}}') Delete
 			h3.widgetTitle {{post.title}}
 			div.line
 				div.line-item.value {{post.text}}
 				div.line-item.unit {{post.unit}}
-			div.widgetChart(ng-controller='ExampleCtrl')
-				nvd3-line-chart(data="exampleData", width='25', height='25', showXAxis="false", showYAxis="false", tooltips="false", interactive="false")
+			div.widgetChart(ng-controller='BulletCtrl')
+				nvd3-bullet-chart(data='bulletData', width='100', height='10', showXAxis="false", margin="{left:5,top:0,bottom:0,right:5}", showYAxis="false", tooltips="true", interactive="false")
 			div.bottomRow
 				div(class='{{post.alarm}}')
-					a.unit(href='readPost/{{post.id}}')
+					a.smallButton(href='readPost/{{post.id}}')
 						img(src='img/alarm.png')
 				div(class='{{post.notes}}')
-					a.unit(href='readPost/{{post.id}}')
+					a.smallButton(href='readPost/{{post.id}}')
 						img(src='img/note.png')
+	//- li.item.widgetexample
+	//- li.item.widgetexample2
 div(style='margin:0;', class='button')
 	div(ng-repeat='toSendId in toSendIds', style='float:left;')
 		a(href='/{{toSendId.id}}', style='margin-right:5px;padding-bottom:3px;') {{toSendId.id}}
