@@ -1,6 +1,8 @@
 // $(document).ready(function() {
 $(window).load(function(){
 
+	// PARA VOLTAR A TER OS CHARTS POR SCRIPT NA PAGINA, DESCOMENTAR:
+	
 	// nv.addGraph(function() {
  //      var chart = nv.models.bulletChart();
 

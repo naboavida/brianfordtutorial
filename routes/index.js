@@ -4,7 +4,22 @@
  */
 
 exports.index = function(req, res){
-  res.render('index');
+	console.log("exports index");
+  res.render('index', {title:'Index page', layout:'indexLayout'});
+};
+
+exports.project = function(req, res){
+	console.log("exports project");
+  res.render('project');
+};
+
+exports.projects = function(req, res){
+  res.render('projects', {title:'Projects page', layout:'indexLayout'});
+};
+
+exports.partialsProject = function (req, res) {
+  var name = req.params.name;
+  res.render('partials/' + name, {title:'Add a project', layout:'indexLayout'});
 };
 
 exports.partials = function (req, res) {

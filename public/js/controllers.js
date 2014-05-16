@@ -36,8 +36,10 @@ function isEmpty(obj) {
 
 function IndexCtrl($scope, $http, $routeParams) {
   var read_id = '/';
+  console.log("START INDEX");
   console.log($routeParams);
-  if(isEmpty($routeParams) == false ){
+  console.log('IndexCtrl pid:'+$routeParams.pid);
+  if(isEmpty($routeParams) == false &&  $routeParams.id!=undefined){
     read_id += $routeParams.id;
   }
   console.log('IndexCtrl /api/posts'+read_id);
@@ -47,10 +49,33 @@ function IndexCtrl($scope, $http, $routeParams) {
       $scope.masterPosts = data.masterPosts;
       $scope.toSendIds = data.toSendIds;
       $scope.last_read_id = data.last_read_id;
-      console.log("yeah IndexCtrl "+$scope.last_read_id);
-      console.log($scope.posts);
+      // $scope.project_info = data.project_info[0];
+      console.log("yeah IndexCtrl ");
+      // console.log($scope.project_info);
+      // console.log($scope.posts);
     });
 }
+
+function ProjectsCtrl($scope, $http){
+  console.log("get all projects");
+  // $scope.projects = [ {id:0, name:'São Tomé'}, {id:1, name:'Príncipe'} ];
+  $http.get('/api/posts').
+    success(function(data, status, headers, config) {
+      $scope.projects = data.project_info;
+      console.log($scope.projects);
+  });
+}
+
+function AddProjectsCtrl($scope, $http){
+  console.log("add project");
+  // $scope.projects = [ {id:0, name:'São Tomé'}, {id:1, name:'Príncipe'} ];
+  // $http.get('/api/posts').
+  //   success(function(data, status, headers, config) {
+  //     $scope.projects = data.project_info;
+  //     console.log($scope.projects);
+  // });
+}
+
 
 function AddPostCtrl($scope, $http, $location) {
   $scope.form = {};
@@ -60,7 +85,7 @@ function AddPostCtrl($scope, $http, $location) {
     $http.post('/api/post', $scope.form).
       success(function(data) {
         console.log("yeah AddPostCtrl");
-        $location.path('/');
+        $location.path('/project');
       });
   };
 }
@@ -87,7 +112,7 @@ function EditPostCtrl($scope, $http, $location, $routeParams) {
         // $location.url('/readPost/' + $routeParams.id);
         // console.log("edit done:");
         // console.log( data + " " + typeof(data) + " " + parseInt(data) + " " + Number(data));
-        $location.path('/'+data);
+        $location.path('/project/'+data);
       });
   };
 }
@@ -101,11 +126,12 @@ function DeletePostCtrl($scope, $http, $location, $routeParams) {
   $scope.deletePost = function () {
     $http.delete('/api/post/' + $routeParams.id).
       success(function(data) {
-        $location.url('/');
+        $location.url('/project/');
       });
   };
 
   $scope.home = function () {
+    console.log("home function")
     $location.url('/');
   };
 }
@@ -114,9 +140,15 @@ function ExampleCtrl($scope){
   $scope.exampleData = [
     {
         "key": "Series 1",
-        "values": [ [ 0 , 7] , [ 1 , 7.2] , [ 2 , 7.5] , [ 3 , 7.2] , [ 4 , 7.6] ]
+        "values": [ [ 0 , 7] , [ 1 , 7.2] , [ 2 , 7.5] , [ 3 , 7.2] , [ 4 , 7.6], [ 5 , 7] , [ 6 , 7.2] , [ 7 , 7.5] , [ 8 , 7.2] , [ 9 , 7.6], [ 10 , 7] ]
     }
   ];
+}
+
+
+function HomeCtrl($scope, $location){
+  console.log("home ctrl")
+  $location.url('/');
 }
 
 function BulletCtrl($scope){

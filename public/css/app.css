@@ -313,3 +313,12 @@ g .nv-tick text{
 .widgetexample2{
   background:url(../pics/wdg2.jpg);
 }
+
+
+.project-item{
+  background-color:#333;
+}
+.add-project{
+  border: 1px #333 dashed;
+  background-color:#231f20;
+}

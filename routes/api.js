@@ -16,7 +16,7 @@ var data2 = [];
 data2["posts"] = [];
 var def_reading_id = '223';
 var def_limit_read = '160';
-var ids_positions = [{"id":"223", "lat":"0.194333333333", "lon":"6.69913888889"}, {"id":"225", "lat":"0.195861111111", "lon":"6.68877777778"}];
+var ids_positions = [{"pid":0, "id":"223", "lat":"0.194333333333", "lon":"6.69913888889"}, {"pid":0, "id":"225", "lat":"0.195861111111", "lon":"6.68877777778"}];
 var connection_active = false;
 
 // function readIdsFromMySqlTest($scope){
@@ -199,7 +199,8 @@ var query_string = 'SELECT id,id_ponto FROM geoaqua_leituras limit '+def_limit_r
           // console.log(fields);
           if(rows[0] != undefined){
             // console.log('The solution22 is: ', rows);
-            var obj = { "id" : elem.id, "lat" : rows[0].y, "lon": rows[0].x};
+            // the pid below must be mapped with the current project being read
+            var obj = { "pid": 0, "id" : elem.id, "lat" : rows[0].y, "lon": rows[0].x};
             ids_positions.push(obj);
           }
 
@@ -411,6 +412,21 @@ data.masterPosts = [
 
 
 
+project_info = [
+  {
+    "id": "0",
+    "nome": "São Tomé",
+    "habitantesPax": "124455",
+    "areaHa": "100"
+  },
+  {
+    "id": "1",
+    "nome": "Príncipe",
+    "habitantesPax": "1235",
+    "areaHa": "20"
+  }
+]
+
 
 connection.query('SELECT id FROM geoaqua_leituras limit '+def_limit_read, function(err, rows, fields) {
   // if (err) throw err;
@@ -549,7 +565,8 @@ exports.posts = function (req, res) {
 	    // masterPosts : masterPosts,
 	    masterPosts : masterData[def_reading_id],
 	    toSendIds : toSendIds,
-      last_read_id : def_reading_id
+      last_read_id : def_reading_id,
+      project_info : project_info
 	  });
   }
 	
@@ -633,6 +650,6 @@ exports.deletePost = function (req, res) {
 exports.geoapi = function (req, res){
 	console.log("API call: geoapi");
 	// console.log(req);
-	// console.log(res);
 	res.json(ids_positions);
+  // console.log(ids_positions);
 }

@@ -3,11 +3,11 @@ ul.list-item
 	li.item.big-item(ng-repeat='masterPost in masterPosts')
 		div.widgetContent
 			div.itemOptions
-				a.unit(href='readPost/{{masterPost.id}}') More
+				a.unit(href='project/readPost/{{masterPost.id}}') More
 				| 
-				a.unit(href='editPost/{{masterPost.id}}') Edit
+				a.unit(href='project/editPost/{{masterPost.id}}') Edit
 				| 
-				a.unit(href='deletePost/{{masterPost.id}}') Delete
+				a.unit(href='project/deletePost/{{masterPost.id}}') Delete
 			h3.widgetTitle {{masterPost.title}}
 			div.line
 				div.line-item.value {{masterPost.text}}
@@ -22,11 +22,11 @@ ul.list-item
 	li.item(ng-repeat='post in posts')
 		div.widgetContent
 			div.itemOptions
-				a.smallButton(href='readPost/{{post.id}}') More
+				a.smallButton(href='project/readPost/{{post.id}}') More
 				| 
-				a.smallButton(href='editPost/{{post.id}}') Edit
+				a.smallButton(href='project/editPost/{{post.id}}') Edit
 				| 
-				a.smallButton(href='deletePost/{{post.id}}') Delete
+				a.smallButton(href='project/deletePost/{{post.id}}') Delete
 			h3.widgetTitle {{post.title}}
 			div.line
 				div.line-item.value {{post.text}}
@@ -41,19 +41,19 @@ ul.list-item
 				nvd3-bullet-chart(data='bulletData', width='100', height='10', showXAxis="false", margin="{left:5,top:0,bottom:0,right:5}", showYAxis="false", tooltips="true", interactive="false")
 			//- below is through directive
 			//- div(ng-controller='BulletCtrl')
-			//- 	div.widgetChart(ng-repeat="bulletData in bulletDataAll | filter:post.id")
+			//- 	div.widgetChart(ng-repeat="bulletData in bulletDataAll")
 			//- 		nvd3-bullet-chart(data='bulletData', width='100', height='10', showXAxis="false", margin="{left:5,top:0,bottom:0,right:5}", showYAxis="false", tooltips="true", interactive="false")
 			div.bottomRow
 				div(class='{{post.alarm}}')
-					a.smallButton(href='readPost/{{post.id}}')
+					a.smallButton(href='project/readPost/{{post.id}}')
 						img(src='img/alarm.png')
 				div(class='{{post.notes}}')
-					a.smallButton(href='readPost/{{post.id}}')
+					a.smallButton(href='project/readPost/{{post.id}}')
 						img(src='img/note.png')
 	//- li.item.widgetexample
 	//- li.item.widgetexample2
 div(style='margin:0;', class='button')
 	div(ng-repeat='toSendId in toSendIds', style='float:left;')
-		a(href='/{{toSendId.id}}', style='margin-right:5px;padding-bottom:3px;') {{toSendId.id}}
+		a(href='/project/0/{{toSendId.id}}', style='margin-right:5px;padding-bottom:3px;') {{toSendId.id}}
 div
 	h2 last read: {{last_read_id}}

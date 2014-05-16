@@ -61,7 +61,7 @@
         var aux_elem = elem;
 
           L.marker([elem.lat,elem.lon]).addTo(map)
-          .bindPopup('<a href="/'+elem.id+'">'+elem.id+'</a>')
+          .bindPopup('<a href="/project/'+elem.pid+'/'+elem.id+'">'+elem.id+'</a>')
           // .on('click', function (e){ window.location.href="/"+elem.id; })
           .on('click', function (e){
             // console.log(aux_elem.lat);
@@ -69,7 +69,7 @@
             // bounds_arr.push([aux_elem.lat, aux_elem.lon]);
             // console.log(bounds_arr);
             // map.fitBounds(bounds_arr);
-            $.get("/"+elem.id);
+            $.get("/project/"+elem.pid+"/"+elem.id);
           });
       });
     });

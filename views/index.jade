@@ -1,43 +1,22 @@
-extends layout
+extends indexLayout
 
 block body
-  header
-    div.wrap
-      a#logo(href='/')
-      h2 My Dashboard
-      ul
-        li(style='float:left')
-          div.button
-            a(href='/', style='padding-bottom:3px;') Home
-        li(style='float:left')
-          div.button
-            a(href='/addPost', style='padding-bottom:3px;') Add Widget
-  div.mainDiv
-    div.leftDiv
-      div.leftDivContent
-        div.areaInfo
-          div.leftInfoDiv
-            img.thumbnail(src='pics/saotome.jpg')
-          div.rightInfoDiv
-            div
-              h2(style='margin-left:25px;') São Tomé
-            div
-              div.leftBarDiv
-                h4 124.455 inhabitants
-              div.rightBarDiv
-                h4 100 km2
-        div#map
-            leaflet
-    div.rightDiv
-      div(ng-view)
+  div(style='max-width: 540px;margin: 0 auto;position: relative;padding: 10px 10px 50px;')
+    div(style='height: 55px;margin-bottom: 10px;text-align: center;')
+      img(src='img/logo.png')
+    div(style='display:block;background-color: #666;border: 1px solid #666;-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);border-radius: 3px;padding: 20px;')
+      form(style='display: block;margin-right:auto; margin-left:auto;width: 200px;')
+        h2(style='font-size: 18px;line-height: 1.2em;margin: 0 0 9px;') Welcome. Please login:
+        label(style='display: block;font-weight: bold;margin-bottom: 4px;') Email
+        input(type='email', style='box-sizing: border-box;-webkit-appearance: none;background-color: #e9e9e9;border: 1px solid #bfbfbf;border-radius: 3px;display: block;margin-bottom: 12px;min-height: 30px;padding: 6px;')
+        label(style='display: block;font-weight: bold;margin-bottom: 4px;') Password
+        input(type='password', style='box-sizing: border-box;-webkit-appearance: none;background-color: #e9e9e9;border: 1px solid #bfbfbf;border-radius: 3px;display: block;margin-bottom: 12px;min-height: 30px;padding: 6px;')
+        a.button(href='projects/', style='background-color:#3a2;border-radius:5px;margin: 15px 0px;margin-top:25px;width:50px;padding: 5px 20px;') Log In
+      //- p welcome
+      //- a(href='projects/') go to projects!
 
-  //- script(src='js/lib/angular/angular.js')
   script(src='js/app.js')
   script(src='js/services.js')
   script(src='js/controllers.js')
   script(src='js/filters.js')
   script(src='js/directives.js')
-  script(src='js/loadmap.js')
-  //- script(src='js/bullet.js')
-  //- script(src='js/charts.js')
-  script(src='js/fillBulletCharts.js')

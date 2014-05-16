@@ -1,0 +1,17 @@
+h2 Input data for Project
+div
+	label(for='id') Id:
+	input(ng-model='form.id', name='id')
+div
+	label(for='nome') Name:
+	input(ng-model='form.nome', name='nome')
+div
+	label(for='habitantesPax') Population:
+	input(ng-model='form.habitantesPax', name='habitantesPax')
+div
+	label(for='areaHa') Area:
+	input(ng-model='form.areaHa', name='areaHa')
+//- p Body:
+//- textarea(ng-model='form.text', cols='50', rows='15')
+p
+	button(ng-click='submitPost()') Add Project
