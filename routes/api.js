@@ -30,7 +30,7 @@ connection.connect(function(err) {
 var coliThreshold = 4;
 
 var names = {"coliformestotais": "Coliformes", "ph": "pH", "cor": "Côr", "turvacao": "Turvação", "amonia": "Amónia", "ferro": "Ferro", 
-			"temperatura": "Temperatura", "cianeto": "Cianeto", "cobre": "Cobre", "nitrito": "Nitrito", "nitrato": "Nitrato", };
+			"temperatura": "Temperatura", "cianeto": "Cianeto", "cobre": "Cobre", "nitrito": "Nitrito", "nitrato": "Nitrato" };
 
 function translateName(db_name){
 	if (names.hasOwnProperty(db_name) ) {
@@ -40,6 +40,22 @@ function translateName(db_name){
 	}
 
 
+};
+
+var averages = [];
+var averagesAreRead = false;
+
+function getAverage(db_name){
+  if(!averagesAreRead){
+    averages = {"coliformestotais": 7, "ph": 4, "cor": "N", "turvacao": 13, "amonia": 34, "ferro": 0.5, 
+      "temperatura": 21, "cianeto": 3.3, "cobre": 0.12, "nitrito": 55, "nitrato": 666 };
+      averagesAreRead = true;
+  }
+  if (averages.hasOwnProperty(db_name) ) {
+    return averages[db_name];
+  } else {
+    return 0;
+  }
 };
 
 function readReadingsFromDbById(id){
@@ -59,10 +75,12 @@ function readReadingsFromDbById(id){
 	  data2 = [];
 	  var coli = 0;
 
+
+
 	  for(var p in rows[0]){
     	if (rows[0].hasOwnProperty(p) ) {
 			// console.log(p + " " + rows[0][p]);
-			var obj = { "title" : translateName(p), "text" : rows[0][p], "unit": "mg/l", "alarm":"no", "notes":"no" };
+			var obj = { "title" : translateName(p), "text" : rows[0][p], "textAvg": getAverage(p), "unit": "mg/l", "alarm":"no", "notes":"no" };
 			data2.push(obj);
 			if(p == 'coliformestotais'){
 				coli = rows[0][p];

@@ -45,6 +45,14 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 
         templateUrl: 'partials/readPost',
         controller: ReadPostCtrl
       }).
+      when('/project/readPost2/:id', {
+        templateUrl: 'partials/readPost2',
+        controller: ReadPostCtrl2
+      }).
+      when('/project/readPost3/:id', {
+        templateUrl: 'partials/readPost3',
+        controller: ReadPostCtrl3
+      }).
       when('/project/editPost/:id', {
         templateUrl: 'partials/editPost',
         controller: EditPostCtrl

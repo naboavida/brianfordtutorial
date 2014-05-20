@@ -1,0 +1,14 @@
+div(style='margin-left:auto; margin-right:auto; width:255px;')
+	div(style='margin-bottom:25px;')
+		div(style='display:inline-block;')
+			div(style='margin:5px;text-align:center;width:75px;float:left;')
+				a(href='project/readPost/{{postId}}') Goals
+			div(style='margin:5px;text-align:center;width:75px;float:left;')
+				a(href='project/readPost2/{{postId}}', style='border-bottom:#eee 1px solid;') History
+			div(style='margin:5px;text-align:center;width:75px;float:left;')
+				a(href='project/readPost3/{{postId}}') Activities
+div(style='margin-left:auto; margin-right:auto; width:600px;margin-top:60px;text-align: center;')
+	h3 {{post.title}}
+	p.widgetTitle(style='margin-top: 25px;') Evolution
+	div(ng-controller='ExampleCtrl', style='margin-top: 25px;')
+			nvd3-line-chart(data="exampleData", width='600', height='300', showXAxis="true", showYAxis="true", tooltips="true", interactive="true")

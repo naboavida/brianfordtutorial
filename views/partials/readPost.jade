@@ -1,4 +1,40 @@
-h3 {{post.title}}
-div {{post.text}}
-div(ng-controller='ExampleCtrl')
-	nvd3-line-chart(data="exampleData", width='500', height='250', showXAxis="true", showYAxis="true", tooltips="true", interactive="true")
+div(style='margin-left:auto; margin-right:auto; width:255px;')
+	div(style='margin-bottom:25px;')
+		div(style='display:inline-block;')
+			div(style='margin:5px;text-align:center;width:75px;float:left;')
+				a(href='project/readPost/{{postId}}', style='border-bottom:#eee 1px solid;') Goals
+			div(style='margin:5px;text-align:center;width:75px;float:left;')
+				a(href='project/readPost2/{{postId}}') History
+			div(style='margin:5px;text-align:center;width:75px;float:left;')
+				a(href='project/readPost3/{{postId}}') Activities
+div(style='margin-left:auto; margin-right:auto; width:600px;margin-top:60px;text-align:center;')
+	div
+		h3(style='text-align:center;margin-bottom:20px;') {{post.title}}
+	div.widgetChartLarge(ng-controller='BulletCtrl')
+		nvd3-bullet-chart(data='bulletDataRead', width='200', height='20', showXAxis="false", margin="{left:5,top:0,bottom:0,right:5}", showYAxis="false", tooltips="true", interactive="false")
+div(style='margin-left:auto; margin-right:auto; width:650px;margin-top:10px;text-align:center;')
+	ul.list-item
+		li.readWidget.item
+			div.widgetContent
+				h3.widgetTitle(style='margin-top:30px;') Year 0
+				div.line
+					p.line-item.value {{ (post.text*1.5).toFixed(2) }}
+					p.line-item.unit {{post.unit}}
+		li.readWidget.item
+			div.widgetContent
+				h3.widgetTitle(style='margin-top:30px;') Current {{post.title}}
+				div.line
+					p.line-item.value {{post.text}}
+					p.line-item.unit {{post.unit}}
+		//- li.readWidget.item
+		//- 	div.widgetContent
+		//- 		h3.widgetTitle(style='margin-top:30px;') Average {{post.title}}
+		//- 		div.line
+		//- 			p.line-item.value {{post.textAvg}}
+		//- 			p.line-item.unit {{post.unit}}
+		li.readWidget.item
+			div.widgetContent
+				h3.widgetTitle(style='margin-top:30px;') Objective {{post.title}}
+				div.line
+					p.line-item.value {{ (post.text/2).toFixed(2) }}
+					p.line-item.unit {{post.unit}}

@@ -1,0 +1,22 @@
+div(style='margin-left:auto; margin-right:auto; width:255px;')
+	div(style='margin-bottom:25px;')
+		div(style='display:inline-block;')
+			div(style='margin:5px;text-align:center;width:75px;float:left;')
+				a(href='project/readPost/{{postId}}') Goals
+			div(style='margin:5px;text-align:center;width:75px;float:left;')
+				a(href='project/readPost2/{{postId}}') History
+			div(style='margin:5px;text-align:center;width:75px;float:left;')
+				a(href='project/readPost3/{{postId}}', style='border-bottom:#eee 1px solid;') Activities
+div(style='margin-left:auto; margin-right:auto; width:600px;margin-top:60px;text-align: center;')
+	h3 {{post.title}}
+	p.widgetTitle(style='margin-top: 25px;') Activities
+	ul.menuItem(style='margin-top: 55px;')
+		li.listItem(ng-repeat="activity in activities")
+			div.innerItem
+				img(src='pics/saotome.jpg')
+				div
+					p(style='color:#eee;') {{activity.name}}
+					p(style='margin-top:5px;font-size:12px;') {{activity.date}}
+		li.listItem
+			div(style='text-align:center;padding:10px;')
+				a(href='project/addActivity/{{postId}}') Add Activity

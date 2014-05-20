@@ -95,6 +95,14 @@ body{
   height: 30px;
 }
 
+.widgetChartLarge{
+  margin-left: auto;
+  margin-right: auto;
+  width: 210px;
+  height: 50px;
+}
+
+
 .mainDiv{
     /*display:inline-block;*/
     max-width: 1600px;
@@ -321,4 +329,93 @@ g .nv-tick text{
 .add-project{
   border: 1px #333 dashed;
   background-color:#231f20;
+}
+
+.readWidget{
+  float:left;
+  margin:15px;
+}
+
+
+/* list for activities */
+
+.menuItem{
+  /*position:absolute;
+  top:10px;
+  left:50%;*/
+  z-index: 50;
+  display:block; 
+  margin: 0; 
+  /*margin-left: 155px;
+  padding-top: 1px;*/
+  width:300px;
+  list-style: none;
+  /*text-align: left;*/
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  color:#a4a4a4;
+  /*height:500px;*/
+}
+.listItem{
+  position: relative;
+  display: block; 
+  float: left;
+  margin: 0;
+  width:300px;
+  /*border-width: 0 1px 1px 1px;
+  border-style: solid;
+  border-color: #b7b7b7 #aaaaaa #a0a0a0;*/
+  background: #fff;
+  background: #ececec;
+  background-color: #444444;
+  /*background: -moz-linear-gradient(top, whitesmoke, #e3e3e3);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whitesmoke), color-stop(100%, #e3e3e3));
+  background: -webkit-linear-gradient(top, whitesmoke, #e3e3e3);
+  background: -o-linear-gradient(top, whitesmoke, #e3e3e3);
+  background: -ms-linear-gradient(top, whitesmoke, #e3e3e3);
+  background: linear-gradient(top, whitesmoke, #e3e3e3);
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;*/
+  border-radius:5px;
+  text-align: left;
+  margin-bottom: 25px;
+}
+/*.listItem:first-child{
+  border-width: 1px 1px 1px 1px;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+.listItem:last-child {
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+}*/
+.innerItem{
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font: inherit;
+  font-size: 100%;
+  line-height: 1;
+}
+.innerItem img{
+  position: relative;
+  float: left; 
+  margin-top: 10px;
+  margin-bottom:10px; 
+  margin-left: 10px; 
+  /*border: 1px solid #fff; */
+  border-radius: 2px;
+  width:52px;
+  height:52px;
+}
+.innerItem div{
+  position: relative;
+  margin-left: 75px;
+  padding-top: 10px;
+ /* width: 150px;*/
 }

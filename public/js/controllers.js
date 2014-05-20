@@ -94,6 +94,24 @@ function ReadPostCtrl($scope, $http, $routeParams) {
   $http.get('/api/post/' + $routeParams.id).
     success(function(data) {
       $scope.post = data.post;
+      $scope.postId = $routeParams.id;
+    });
+}
+
+function ReadPostCtrl2($scope, $http, $routeParams) {
+  $http.get('/api/post/' + $routeParams.id).
+    success(function(data) {
+      $scope.post = data.post;
+      $scope.postId = $routeParams.id;
+    });
+}
+
+function ReadPostCtrl3($scope, $http, $routeParams) {
+  $http.get('/api/post/' + $routeParams.id).
+    success(function(data) {
+      $scope.post = data.post;
+      $scope.postId = $routeParams.id;
+      $scope.activities = [{ name:"Reflorestação", date:"Fevereiro 2013"}, { name:"Limpeza", date:"Agosto 2013"} ];
     });
 }
 
@@ -156,6 +174,12 @@ function BulletCtrl($scope){
         "ranges": [1, 180, 300],
         "measures": [70],
         "markers": [100]
+    };
+
+    $scope.bulletDataRead = {
+      "ranges": [1, 3, 5],
+      "measures": [3.5],
+      "markers": [4.7]
     };
     // $scope.bulletData1 = {
     //     "ranges": [1, 180, 300],

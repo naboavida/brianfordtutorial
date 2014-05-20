@@ -24,5 +24,6 @@ exports.partialsProject = function (req, res) {
 
 exports.partials = function (req, res) {
   var name = req.params.name;
+  console.log("name in partials: "+name);
   res.render('partials/' + name);
 };
