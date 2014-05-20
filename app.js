@@ -48,8 +48,18 @@ app.get('/project', routes.project);
 app.get('/project/:pid', routes.project);
 app.get('/project/:pid/:id', routes.project);
 app.get('/projects', routes.projects);
-app.get('/projects/:name', routes.partialsProject);
+app.get('/addProject', routes.addProject);
+
+// app.get('/project/addActivity/:pid', routes.activity);
+
+// app.post('/addProject', function(req, res){
+// 	console.log("Name is "+req.body.name);
+// 	res.render('projects');
+// });
+// app.get('/projects/:name', routes.partialsProjects);
 app.get('/partials/:name', routes.partials);
+
+
 
 // JSON API
 
@@ -59,6 +69,7 @@ app.get('/api/posts/:id', api.posts);
 app.get('/api/post/:id', api.post);
 app.post('/api/post', api.addPost);
 app.put('/api/post/:id', api.editPost);
+app.post('/api/project', api.addProject);
 app.delete('/api/post/:id', api.deletePost);
 
 app.get('/geoapi', api.geoapi);

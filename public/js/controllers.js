@@ -66,8 +66,17 @@ function ProjectsCtrl($scope, $http){
   });
 }
 
-function AddProjectsCtrl($scope, $http){
+function AddProjectsCtrl($scope, $http, $location) {
   console.log("add project");
+  $scope.formProject = {};
+  console.log($scope.form);
+  $scope.submitProject = function () {
+    $http.post('/api/project', $scope.formProject).
+      success(function(data) {
+        console.log("yeah AddProjectCtrl");
+        $location.path('/projects');
+      });
+  };
   // $scope.projects = [ {id:0, name:'São Tomé'}, {id:1, name:'Príncipe'} ];
   // $http.get('/api/posts').
   //   success(function(data, status, headers, config) {

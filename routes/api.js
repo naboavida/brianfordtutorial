@@ -614,6 +614,19 @@ exports.addPost = function (req, res) {
   res.json(req.body);
 };
 
+exports.addProject = function (req, res) {
+  // console.log("API call: addPost");
+  // data[def_reading_id].push(req.body);
+  console.log("API call: add project");
+  console.log(req.body);
+
+
+  project_info.push(req.body);
+  console.log(project_info);
+
+  res.json(req.body);
+};
+
 // PUT
 exports.editPost = function (req, res) {
   var id = req.params.id;

@@ -13,8 +13,8 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 
         templateUrl: 'projects',
         controller: ProjectsCtrl
       }).
-      when('/projects/addProject', {
-        templateUrl: 'partials/addProject',
+      when('/addProject', {
+        templateUrl: 'addProject',
         controller: AddProjectsCtrl
       }).
       // when('/addPost', {

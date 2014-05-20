@@ -17,16 +17,18 @@ block body
     a(href='project/') go to project...
     a(href='/') or go home
     div(style='margin:25px')
-      ul.project-list-item(style='width:350px;display:block;margin-left:auto;margin-right:auto;')
-        li.project-item(ng-repeat='project in projects')
+      ul.menuItem.menuItemLarge(style='width:350px;display:block;margin-left:auto;margin-right:auto;')
+        li.listItem.listItemLarge(ng-repeat='project in projects')
           a(href='/project/{{project.id}}')
-            div(style='padding:25px;margin: 10px 0px;width:300px;') 
-              p{{project.nome}} 
-              p {{project.habitantesPax}} habitantes {{project.areaHa}} km2
-        li.project-item.add-project
-          a(href='/projects/addProject')
-            div(style='padding:25px;margin: 10px 0px;width:300px;') 
-              p Add Project
+            div.innerItem.innerItemBig
+              img(src='pics/saotome.jpg')
+              div
+                p(style='color:#eee;') {{project.nome}}
+                p(style='margin-top:5px;font-size:12px;') {{project.habitantesPax}} habitantes {{project.areaHa}} km2
+        li.listItem.listItemLarge.project-item.add-project
+          a(href='/addProject')
+            div.innerItem.innerItemBig
+              p.innerItemBigParagraph Add Project
     //- div(ng-view)
 
   script(src='js/app.js')

@@ -1,0 +1,38 @@
+extends indexLayout
+
+block body
+	header
+		div.wrap
+			a#logo(href='/')
+			h2 Add a Project
+			ul
+				li(style='float:left')
+					div.button
+						a(href='', style='padding-bottom:3px;') Account
+				li(style='float:left')
+					div.button
+						a(href='', style='padding-bottom:3px;') Log Out
+	div(style='max-width: 540px;margin: 0 auto;position: relative;padding: 10px 10px 50px;', ng-controller="AddProjectsCtrl")
+		div(style='display:block;background-color: #666;border: 1px solid #666;-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);border-radius: 3px;padding: 20px;')
+			h2 Input data for Project
+			div
+				label(for='nome') Title:
+				input(ng-model='formProject.nome', name='nome')
+			div
+				label(for='habitantesPax') Inhabitants:
+				input(ng-model='formProject.habitantesPax', name='habitantesPax')
+			div
+				label(for='areaHa') Area:
+				input(ng-model='formProject.areaHa', name='areaHa')
+			//- p Body:
+			//- textarea(ng-model='form.text', cols='50', rows='15')
+			p
+				button(ng-click='submitProject()') Submit Project
+				//- input.button(type='submit', style='background-color:#3a2;border-radius:5px;margin: 15px 0px;margin-top:25px;width:50px;padding: 5px 20px;') Log In
+
+	script(src='js/app.js')
+	script(src='js/services.js')
+	script(src='js/controllers.js')
+	script(src='js/filters.js')
+	script(src='js/directives.js')
+	
