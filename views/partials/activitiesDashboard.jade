@@ -1,9 +1,10 @@
 //- div
 //- 	p activitiesDashboard
-div(ng-controller="CalendarCtrl", style='width:60%;margin-left:auto;margin-right:auto;')
-	div(style='position: relative; display: inline-block;font-size: 0; white-space: nowrap; vertical-align: middle;margin-bottom:25px;')
-		button(class="fc-button-cal fc-button-cal-left", ng-click="changeView('agendaDay', myCalendar1)") AgendaDay
-		button(class="fc-button-cal", ng-click="changeView('agendaWeek', myCalendar1)") AgendaWeek
-		button(class="fc-button-cal fc-button-cal-right", ng-click="changeView('month', myCalendar1)") AgendaMonth
-	div
-		div(ui-calendar="uiConfig.calendar", class="calendar", ng-model='eventSources',calendar='myCalendar1')
+div(ng-controller="CalendarCtrl", style='width:70%;margin-left:auto;margin-right:auto;')
+	//- div(style='position: relative; display: inline-block;font-size: 0; white-space: nowrap; vertical-align: middle;margin-bottom:25px;')
+	//- 	button(class="fc-button-cal fc-button-cal-left", ng-click="changeView('agendaDay', myCalendar1)") AgendaDay
+	//- 	button(class="fc-button-cal", ng-click="changeView('agendaWeek', myCalendar1)") AgendaWeek
+	//- 	button(class="fc-button-cal fc-button-cal-right", ng-click="changeView('month', myCalendar1)") AgendaMonth
+	div(style='margin-top:105px;')
+		//- div(ui-calendar="uiConfig.calendar", class="calendar", ng-model='eventSources',calendar='myCalendar1')
+		div(ui-calendar="uiConfig.calendar", ng-model='eventSources',calendar='myCalendar1')

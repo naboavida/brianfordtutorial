@@ -19,22 +19,7 @@ ul.list-item
 					    stroke-width="1")
 					circle(style='stroke-width:5;stroke:rgba({{masterPost.colorRGB1}},0.25)', cx="20", cy="15", r="10", fill="{{masterPost.color1}}")
 					circle(style='stroke-width:5;stroke:rgba({{masterPost.colorRGB2}},0.25)', cx="55", cy="15", r="10", fill="{{masterPost.color2}}")
-	li.item(ng-repeat="d in weatherData")
-		div.widgetContent
-			div.itemOptions
-				a.smallButton(href='project/innerDashboard/') More
-				| 
-				a.smallButton(href='project/editPost/{{masterPost.id}}') Edit
-				| 
-				a.smallButton(href='project/deletePost/{{masterPost.id}}') Delete
-			h3.widgetTitle {{d.name}}
-			div.line
-				div.line-item.value {{d.value}}
-				div.line-item.unit {{d.unit}}
-				div
-					//- img(src='{{d.iconSrc}}', style='background-color:white;border-radius:15px;')
-					img(src='{{d.iconSrc}}', style='')
-	li.item
+	li.item(ng-controller='CalendarCtrl')
 		div.widgetContent
 			div.itemOptions
 				a.smallButton(href='project/activitiesDashboard/') More
@@ -54,6 +39,21 @@ ul.list-item
 				div(class='yes')
 					a.smallButton(href='project/readPost/{{post.id}}')
 						img(src='img/note.png')
+	li.item(ng-repeat="d in weatherData")
+		div.widgetContent
+			div.itemOptions
+				a.smallButton(href='project/innerDashboard/') More
+				| 
+				a.smallButton(href='project/editPost/{{masterPost.id}}') Edit
+				| 
+				a.smallButton(href='project/deletePost/{{masterPost.id}}') Delete
+			h3.widgetTitle {{d.name}}
+			div.line
+				div.line-item.value {{d.value}}
+				div.line-item.unit {{d.unit}}
+				div
+					//- img(src='{{d.iconSrc}}', style='background-color:white;border-radius:15px;')
+					img(src='{{d.iconSrc}}', style='')
 		//- div.widgetContent
 			div.itemOptions
 				a.smallButton(href='project/innerDashboard/') More

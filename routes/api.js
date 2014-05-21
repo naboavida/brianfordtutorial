@@ -17,6 +17,13 @@ data2["posts"] = [];
 var def_reading_id = '223';
 var def_limit_read = '160';
 var ids_positions = [{"pid":0, "id":"223", "lat":"0.194333333333", "lon":"6.69913888889"}, {"pid":0, "id":"225", "lat":"0.195861111111", "lon":"6.68877777778"}];
+var next_activity = {
+  name: 'Water Sampling',
+  day: '25',
+  month: 'May',
+  year: '2014'
+};
+var next_start = '2014-05-25T23:00:00.000Z';
 var connection_active = false;
 
 // function readIdsFromMySqlTest($scope){
@@ -683,4 +690,29 @@ exports.geoapi = function (req, res){
 	// console.log(req);
 	res.json(ids_positions);
   // console.log(ids_positions);
+}
+
+
+exports.nextActivity = function (req, res){
+  console.log("API call: nextActivity");
+  // console.log(next_activity);
+  // console.log(req);
+  // res.json(ids_positions);
+  // console.log(ids_positions);
+  var result = {'nextActivity':next_activity, 'nextStart':next_start};
+  console.log(result);
+  res.json(result);
+}
+
+
+exports.addNextActivity = function (req, res){
+  console.log("API call: addNextActivity");
+  console.log(req.body);
+  next_activity = req.body.nextActivity;
+  next_start = req.body.nextStart;
+  // console.log(next_activity);
+  // console.log(req);
+  // res.json(ids_positions);
+  // console.log(ids_positions);
+  // res.json(next_activity);
 }

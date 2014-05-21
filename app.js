@@ -73,6 +73,8 @@ app.post('/api/project', api.addProject);
 app.delete('/api/post/:id', api.deletePost);
 
 app.get('/geoapi', api.geoapi);
+app.get('/api/nextActivity', api.nextActivity);
+app.post('/api/nextActivity', api.addNextActivity);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
