@@ -1,0 +1,48 @@
+.fc-button-cal:focus{
+  color: blue;
+}
+
+.fc-button-cal-left{
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.fc-button-cal-right{
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+.fc-button-cal{
+	border: 1px solid;
+	padding:5px;
+
+	margin-right: -1px;
+
+	margin-bottom: 1em;
+	vertical-align: top;
+
+
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+	background-repeat: repeat-x;
+	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	color: #333;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 16px;
+
+
+	position: relative;
+	display: inline-block;
+	padding: 0 .6em;
+	overflow: hidden;
+	height: 1.9em;
+	line-height: 1.9em;
+	white-space: nowrap;
+	cursor: pointer;
+}
