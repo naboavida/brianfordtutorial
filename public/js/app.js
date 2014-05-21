@@ -33,6 +33,10 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 
       //   templateUrl: 'partials/deletePost',
       //   controller: DeletePostCtrl
       // }).
+      when('/project/innerDashboard', {
+        templateUrl: 'partials/innerDashboard',
+        controller: IndexCtrl
+      }).
       when('/project', {
         templateUrl: 'partials/index',
         controller: IndexCtrl
@@ -67,6 +71,14 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 
       }).
       when('/project/:pid/:id', {
         templateUrl: 'partials/index',
+        controller: IndexCtrl
+      }).
+      when('/project/innerDashboard/:pid', {
+        templateUrl: 'partials/innerDashboard',
+        controller: IndexCtrl
+      }).
+      when('/project/innerDashboard/:pid/:id', {
+        templateUrl: 'partials/innerDashboard',
         controller: IndexCtrl
       }).
       otherwise({

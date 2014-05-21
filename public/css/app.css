@@ -87,6 +87,10 @@ body{
     margin-right: auto;
     width: 150px;
 }
+.semaphoreChartSmall{
+  margin-top: 0px;
+  width: 75px;
+}
 
 .widgetChart{
   margin-left: auto;

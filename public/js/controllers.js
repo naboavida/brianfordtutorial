@@ -54,6 +54,8 @@ function IndexCtrl($scope, $http, $routeParams) {
       // console.log($scope.project_info);
       // console.log($scope.posts);
     });
+
+  WeatherCtrl($scope, $http);
 }
 
 function ProjectsCtrl($scope, $http){
@@ -66,14 +68,14 @@ function ProjectsCtrl($scope, $http){
   });
 }
 
-function AddProjectsCtrl($scope, $http, $location) {
+function AddProjectsCtrl($scope, $rootScope, $http, $location) {
   console.log("add project");
   $scope.formProject = {};
   console.log($scope.form);
   $scope.submitProject = function () {
     $http.post('/api/project', $scope.formProject).
       success(function(data) {
-        console.log("yeah AddProjectCtrl");
+        console.log("yeah AddProjectController!");
         $location.path('/projects');
       });
   };
@@ -85,6 +87,31 @@ function AddProjectsCtrl($scope, $http, $location) {
   // });
 }
 
+function WeatherCtrl($scope, $http){
+  // $scope.weatherData = [ {name:'rh',value:'1'}, {name:'UV',value:'1'}, {name:'precip_today_metric',value:'1'}];
+  $scope.weatherData = [];
+  console.log($scope.weatherData);
+
+  $http.get('http://api.wunderground.com/api/fd6f92441a1e3d84/conditions/q/CV/Praia.json').
+    success(function(data){
+      console.log('getting weather data');
+      $scope.weatherData = [];
+      // console.log(data.current_observation.relative_humidity);
+
+      var obj = {name:'Relative Humidity', value:data.current_observation.relative_humidity};
+      $scope.weatherData.push(obj);
+      var obj = {name:'UV', value:data.current_observation.UV};
+      $scope.weatherData.push(obj);
+      var obj = {name:'Precipitation', value:data.current_observation.precip_today_metric, unit:'mm/h', iconSrc:('http://icons.wxug.com/i/c/k/'+data.current_observation.icon+'.gif')};
+      $scope.weatherData.push(obj);
+      // $scope.weatherData['rh'] = data.current_observation.relative_humidity;
+      // $scope.weatherData['UV'] = data.current_observation.UV;
+      // $scope.weatherData['precip_today_metric'] = data.current_observation.precip_today_metric;
+      
+      console.log($scope.weatherData);
+    });
+  
+}
 
 function AddPostCtrl($scope, $http, $location) {
   $scope.form = {};
@@ -94,7 +121,7 @@ function AddPostCtrl($scope, $http, $location) {
     $http.post('/api/post', $scope.form).
       success(function(data) {
         console.log("yeah AddPostCtrl");
-        $location.path('/project');
+        $location.path('/project/innerDashboard');
       });
   };
 }
@@ -139,7 +166,7 @@ function EditPostCtrl($scope, $http, $location, $routeParams) {
         // $location.url('/readPost/' + $routeParams.id);
         // console.log("edit done:");
         // console.log( data + " " + typeof(data) + " " + parseInt(data) + " " + Number(data));
-        $location.path('/project/'+data);
+        $location.path('/project/innerDashboard/0/'+data);
       });
   };
 }
@@ -153,7 +180,7 @@ function DeletePostCtrl($scope, $http, $location, $routeParams) {
   $scope.deletePost = function () {
     $http.delete('/api/post/' + $routeParams.id).
       success(function(data) {
-        $location.url('/project/');
+        $location.url('/project/innerDashboard');
       });
   };
 
