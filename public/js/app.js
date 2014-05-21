@@ -65,6 +65,10 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 
         templateUrl: 'partials/deletePost',
         controller: DeletePostCtrl
       }).
+      when('/project/activitiesDashboard/', {
+        templateUrl: 'partials/activitiesDashboard',
+        controller: ActivitiesCtrl
+      }).
       when('/project/:pid', {
         templateUrl: 'partials/index',
         controller: IndexCtrl

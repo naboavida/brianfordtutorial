@@ -39,6 +39,8 @@ function IndexCtrl($scope, $http, $routeParams) {
   console.log("START INDEX");
   console.log($routeParams);
   console.log('IndexCtrl pid:'+$routeParams.pid);
+
+  $scope.nextActivity = {name:'Water Sampling', day:'25', month:'September', year:'2014'};
   if(isEmpty($routeParams) == false &&  $routeParams.id!=undefined){
     read_id += $routeParams.id;
   }
@@ -239,3 +241,7 @@ function BulletCtrl($scope){
 // function GeoApiIndex($scope, $http, $routeParams){
 //   console.log("lwlwllwlawa");
 // }
+
+function ActivitiesCtrl($scope, $http){
+  console.log('ActivitiesCtrl');
+}
