@@ -26,6 +26,11 @@ header ul{
     border-radius: 2px;
 }
 
+.item-to-add{
+    background-color: #231f20;
+    border: 1px #444444 dashed;
+}
+
 @media screen and (max-width: 1400px) {
     .item{
         width:167px;

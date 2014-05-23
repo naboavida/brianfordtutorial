@@ -332,7 +332,7 @@ g .nv-tick text{
 }
 .add-project{
   border: 1px #333 dashed;
-  background-color:#231f20;
+  background-color:#231f20!important;
 }
 
 .readWidget{

@@ -65,9 +65,11 @@ app.get('/partials/:name', routes.partials);
 
 app.get('/api/posts', api.posts);
 app.get('/api/posts/:id', api.posts);
+// app.get('/api/posts/:pid/:id', api.posts);
 
 app.get('/api/post/:id', api.post);
 app.post('/api/post', api.addPost);
+app.post('/api/postInner', api.addPostInner);
 app.put('/api/post/:id', api.editPost);
 app.post('/api/project', api.addProject);
 app.delete('/api/post/:id', api.deletePost);

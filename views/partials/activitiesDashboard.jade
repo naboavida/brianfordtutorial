@@ -8,3 +8,8 @@ div(ng-controller="CalendarCtrl", style='width:70%;margin-left:auto;margin-right
 	div(style='margin-top:105px;')
 		//- div(ui-calendar="uiConfig.calendar", class="calendar", ng-model='eventSources',calendar='myCalendar1')
 		div(ui-calendar="uiConfig.calendar", ng-model='eventSources',calendar='myCalendar1')
+	div
+		form
+			p activityToAdd: {{activityToAdd}}
+			input(name='activityName', ng-model='activityToAdd')
+			input(type='submit') Add Activity

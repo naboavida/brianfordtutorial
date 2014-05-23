@@ -12,9 +12,11 @@ var ids = [{"id":"223"}, {"id":"225"}];
 
 var readings = [];
 var data = [];
+var dataOverview = [{"title": "Ferro","text": "334","unit": "mg/l","alarm": "yes","notes": "no"}]
 var data2 = [];
 data2["posts"] = [];
 var def_reading_id = '223';
+var def_project_id = '0';
 var def_limit_read = '160';
 var ids_positions = [{"pid":0, "id":"223", "lat":"0.194333333333", "lon":"6.69913888889"}, {"pid":0, "id":"225", "lat":"0.195861111111", "lon":"6.68877777778"}];
 var next_activity = {
@@ -571,6 +573,8 @@ exports.posts = function (req, res) {
   if(req.params.id != null){
   	// console.log(req.params.id);
   	def_reading_id = req.params.id;
+    def_project_id = req.params.pid;
+    console.log('----- def_project_id: '+def_project_id);
   	// readReadingsFromDbById(req.params.id);
   	// data.posts = togoposts;
   	// console.log(data.posts);
@@ -579,7 +583,8 @@ exports.posts = function (req, res) {
 	    posts: togoposts,
 	    masterPosts : masterData[req.params.id],
 	    toSendIds : toSendIds,
-      last_read_id : def_reading_id
+      last_read_id : def_reading_id,
+      postsOverview : dataOverview
 	  });
   }
   else {
@@ -591,7 +596,8 @@ exports.posts = function (req, res) {
 	    masterPosts : masterData[def_reading_id],
 	    toSendIds : toSendIds,
       last_read_id : def_reading_id,
-      project_info : project_info
+      project_info : project_info,
+      postsOverview : dataOverview
 	  });
   }
 	
@@ -616,7 +622,16 @@ exports.post = function (req, res) {
 
 // POST
 exports.addPost = function (req, res) {
-	// console.log("API call: addPost");
+	console.log("API call: addPost");
+  console.log(req.body);
+  console.log(dataOverview);
+  dataOverview.push(req.body);
+  res.json(req.body);
+};
+
+exports.addPostInner = function (req, res) {
+  console.log("API call: addPostInner");
+  console.log(req.body);
   data[def_reading_id].push(req.body);
   res.json(req.body);
 };

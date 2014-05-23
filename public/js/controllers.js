@@ -51,9 +51,10 @@ function IndexCtrl($scope, $http, $routeParams) {
     $scope.masterPosts = data.masterPosts;
     $scope.toSendIds = data.toSendIds;
     $scope.last_read_id = data.last_read_id;
+    $scope.postsOverview = data.postsOverview;
     // $scope.project_info = data.project_info[0];
     console.log("yeah IndexCtrl ");
-    // console.log($scope.project_info);
+    // console.log($scope.postsOverview);
     // console.log($scope.posts);
   });
 
@@ -94,35 +95,53 @@ function WeatherCtrl($scope, $http) {
   $scope.weatherData = [];
   console.log($scope.weatherData);
 
-  $http.get('http://api.wunderground.com/api/fd6f92441a1e3d84/conditions/q/CV/Praia.json').
-  success(function(data) {
-    console.log('getting weather data');
-    $scope.weatherData = [];
-    // console.log(data.current_observation.relative_humidity);
+  var obj = {
+    name: 'Relative Humidity',
+    value: "44%"
+  };
+  $scope.weatherData.push(obj);
+  var obj = {
+    name: 'UV',
+    value: "3"
+  };
+  $scope.weatherData.push(obj);
+  var obj = {
+    name: 'Precipitation',
+    value: "0.1",
+    unit: 'mm/h',
+    iconSrc: ('http://icons.wxug.com/i/c/k/cloudy.gif')
+  };
+  $scope.weatherData.push(obj);
 
-    var obj = {
-      name: 'Relative Humidity',
-      value: data.current_observation.relative_humidity
-    };
-    $scope.weatherData.push(obj);
-    var obj = {
-      name: 'UV',
-      value: data.current_observation.UV
-    };
-    $scope.weatherData.push(obj);
-    var obj = {
-      name: 'Precipitation',
-      value: data.current_observation.precip_today_metric,
-      unit: 'mm/h',
-      iconSrc: ('http://icons.wxug.com/i/c/k/' + data.current_observation.icon + '.gif')
-    };
-    $scope.weatherData.push(obj);
-    // $scope.weatherData['rh'] = data.current_observation.relative_humidity;
-    // $scope.weatherData['UV'] = data.current_observation.UV;
-    // $scope.weatherData['precip_today_metric'] = data.current_observation.precip_today_metric;
+  // $http.get('http://api.wunderground.com/api/fd6f92441a1e3d84/conditions/q/CV/Praia.json').
+  // success(function(data) {
+  //   console.log('getting weather data');
+  //   $scope.weatherData = [];
+  //   // console.log(data.current_observation.relative_humidity);
 
-    console.log($scope.weatherData);
-  });
+  //   var obj = {
+  //     name: 'Relative Humidity',
+  //     value: data.current_observation.relative_humidity
+  //   };
+  //   $scope.weatherData.push(obj);
+  //   var obj = {
+  //     name: 'UV',
+  //     value: data.current_observation.UV
+  //   };
+  //   $scope.weatherData.push(obj);
+  //   var obj = {
+  //     name: 'Precipitation',
+  //     value: data.current_observation.precip_today_metric,
+  //     unit: 'mm/h',
+  //     iconSrc: ('http://icons.wxug.com/i/c/k/' + data.current_observation.icon + '.gif')
+  //   };
+  //   $scope.weatherData.push(obj);
+  //   // $scope.weatherData['rh'] = data.current_observation.relative_humidity;
+  //   // $scope.weatherData['UV'] = data.current_observation.UV;
+  //   // $scope.weatherData['precip_today_metric'] = data.current_observation.precip_today_metric;
+
+  //   console.log($scope.weatherData);
+  // });
 
 }
 
@@ -131,12 +150,25 @@ function AddPostCtrl($scope, $http, $location) {
   console.log('AddPostCtrl /api/post');
   console.log($scope.form);
   $scope.submitPost = function() {
+    console.log('AddPostCtrl submit /api/post');
+    console.log($scope.form);
     $http.post('/api/post', $scope.form).
+    success(function(data) {
+      console.log("yeah AddPostCtrl");
+      $location.path('/project/index');
+    });
+  };
+
+  $scope.submitInnerPost = function() {
+    console.log('AddPostCtrl submitInnerPost /api/post');
+    console.log($scope.form);
+    $http.post('/api/postInner', $scope.form).
     success(function(data) {
       console.log("yeah AddPostCtrl");
       $location.path('/project/innerDashboard');
     });
   };
+  
 }
 
 function ReadPostCtrl($scope, $http, $routeParams) {
@@ -326,7 +358,17 @@ function CalendarCtrl($scope, $http) {
     console.log($scope.nextActivity);
   };
 
+  $scope.alertDayClick = function(date, allDay, jsEvent, view){
+    if (allDay) {
+        console.log('Clicked on the entire day: ' + date);
+    }else{
+        console.log('Clicked on the slot: ' + date);
+    }
+    $scope.events.push({title:$scope.activityToAdd, start:date});
+    console.log($scope.events);
+  };
 
+  $scope.activityToAdd = '';
 
   $scope.uiConfig = {
     calendar: {
@@ -338,7 +380,7 @@ function CalendarCtrl($scope, $http) {
         center: 'title',
         right: 'today prev,next'
       },
-      dayClick: $scope.alertEventOnClick,
+      dayClick: $scope.alertDayClick,
       eventDrop: $scope.alertOnDrop,
       eventResize: $scope.alertOnResize
     }
