@@ -12,7 +12,9 @@ var ids = [{"id":"223"}, {"id":"225"}];
 
 var readings = [];
 var data = [];
-var dataOverview = [{"title": "Ferro","text": "334","unit": "mg/l","alarm": "yes","notes": "no"}]
+var dataOverview = [];
+dataOverview['0'] = [{"title": "Relative Humidity","text": "44","unit": "%","alarm": "no","notes": "yes"}];
+dataOverview['1'] = [];
 var data2 = [];
 data2["posts"] = [];
 var def_reading_id = '223';
@@ -97,7 +99,7 @@ function readReadingsFromDbById(id){
     	}
       }
       // console.log("read done...");
-      data[id] = data2;
+      data['0'][id] = data2;
 
       if(coli > coliThreshold) {
       	masterData[id] = [
@@ -161,7 +163,7 @@ data2["posts"] = [];
       }
       // console.log("lalalaasdasdadsdasdsa");
 		// console.log(data2);
-	data.posts = data2;
+	data['0'].posts = data2;
 
 
 	  // var i = 0;
@@ -289,7 +291,7 @@ var query_string = 'SELECT id,id_ponto FROM geoaqua_leituras limit '+def_limit_r
 
 
 
-data = {
+data['0'] = {
   "223": [
     {
       "title": "Coliformes",
@@ -425,7 +427,7 @@ masterData[ids[1].id] = [
     }
   ];
 
-data.masterPosts = [
+data['0'].masterPosts = [
     {
       "title": "Qualidade da Água",
       "text": "Boa",
@@ -501,7 +503,7 @@ exports.posts = function (req, res) {
   var masterPosts = [];
   var toSendIds = [];
 
-  console.log("API call: posts" + req.params.id);
+  console.log("API call: posts" + req.params.pid + " " + req.params.id);
 
 
   ids.forEach(function (id){
@@ -522,8 +524,8 @@ exports.posts = function (req, res) {
   // });
 
   var togoposts = [];
-  if(req.params.id != null){
-	  data[req.params.id].forEach(function (post, i) {
+  if(req.params.id != null && req.params.pid != null){
+	  data[req.params.pid][req.params.id].forEach(function (post, i) {
 	    togoposts.push({
 	      id: i,
 	      title: post.title,
@@ -537,7 +539,7 @@ exports.posts = function (req, res) {
 	    // console.log(posts);
 	  });
 	} else {
-		data[def_reading_id].forEach(function (post, i) {
+		data[def_project_id][def_reading_id].forEach(function (post, i) {
 	    togoposts.push({
 	      id: i,
 	      title: post.title,
@@ -551,26 +553,43 @@ exports.posts = function (req, res) {
 	  });
 	}
 
-  data.masterPosts.forEach(function (post, i) {
-    masterPosts.push({
-      id: i,
-      title: post.title,
-      // text: post.text.substr(0, 50),
-      text: post.text,
-      unit: post.unit,
-      colorRGB1: post.colorRGB1,
-      color1: post.color1,
-      colorRGB2: post.colorRGB2,
-      color2: post.color2
+  if(req.params.id != null && req.params.pid != null){
+    data[req.params.pid].masterPosts.forEach(function (post, i) {
+      masterPosts.push({
+        id: i,
+        title: post.title,
+        // text: post.text.substr(0, 50),
+        text: post.text,
+        unit: post.unit,
+        colorRGB1: post.colorRGB1,
+        color1: post.color1,
+        colorRGB2: post.colorRGB2,
+        color2: post.color2
+      });
+      // console.log(posts);
     });
-    // console.log(posts);
-  });
+  } else {
+    data[def_project_id].masterPosts.forEach(function (post, i) {
+      // masterPosts.push({
+      //   id: i,
+      //   title: post.title,
+      //   // text: post.text.substr(0, 50),
+      //   text: post.text,
+      //   unit: post.unit,
+      //   colorRGB1: post.colorRGB1,
+      //   color1: post.color1,
+      //   colorRGB2: post.colorRGB2,
+      //   color2: post.color2
+      // });
+      // // console.log(posts);
+    });
+  }
   // console.log(posts);
   // console.log("        --         ");
   // console.log(data[req.params.id]);
 
 
-  if(req.params.id != null){
+  if(req.params.id != null && req.params.pid != null){
   	// console.log(req.params.id);
   	def_reading_id = req.params.id;
     def_project_id = req.params.pid;
@@ -584,7 +603,7 @@ exports.posts = function (req, res) {
 	    masterPosts : masterData[req.params.id],
 	    toSendIds : toSendIds,
       last_read_id : def_reading_id,
-      postsOverview : dataOverview
+      postsOverview : dataOverview[req.params.pid]
 	  });
   }
   else {
@@ -592,12 +611,12 @@ exports.posts = function (req, res) {
   	res.json({
 	    // posts: posts,
 	    posts: togoposts,
-	    // masterPosts : masterPosts,
-	    masterPosts : masterData[def_reading_id],
+	    masterPosts : masterPosts,
+	    // masterPosts : masterData[def_reading_id],
 	    toSendIds : toSendIds,
       last_read_id : def_reading_id,
       project_info : project_info,
-      postsOverview : dataOverview
+      postsOverview : dataOverview[req.params.pid]
 	  });
   }
 	

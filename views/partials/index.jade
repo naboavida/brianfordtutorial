@@ -65,21 +65,21 @@ ul.list-item
 				div(class='yes')
 					a.smallButton(href='project/readPost/{{post.id}}')
 						img(src='img/note.png')
-	li.item(ng-repeat="d in weatherData")
-		div.widgetContent
-			div.itemOptions
-				a.smallButton(href='project/innerDashboard/') More
-				| 
-				a.smallButton(href='project/editPost/{{masterPost.id}}') Edit
-				| 
-				a.smallButton(href='project/deletePost/{{masterPost.id}}') Delete
-			h3.widgetTitle {{d.name}}
-			div.line
-				div.line-item.value {{d.value}}
-				div.line-item.unit {{d.unit}}
-				div
-					//- img(src='{{d.iconSrc}}', style='background-color:white;border-radius:15px;')
-					img(src='{{d.iconSrc}}', style='')
+	//- li.item(ng-repeat="d in weatherData")
+	//- 	div.widgetContent
+	//- 		div.itemOptions
+	//- 			a.smallButton(href='project/innerDashboard/') More
+	//- 			| 
+	//- 			a.smallButton(href='project/editPost/{{masterPost.id}}') Edit
+	//- 			| 
+	//- 			a.smallButton(href='project/deletePost/{{masterPost.id}}') Delete
+	//- 		h3.widgetTitle {{d.name}}
+	//- 		div.line
+	//- 			div.line-item.value {{d.value}}
+	//- 			div.line-item.unit {{d.unit}}
+	//- 			div
+	//- 				//- img(src='{{d.iconSrc}}', style='background-color:white;border-radius:15px;')
+	//- 				img(src='{{d.iconSrc}}', style='')
 	li.item.item-to-add
 		a(href='/project/addPost')
 			div.widgetContent

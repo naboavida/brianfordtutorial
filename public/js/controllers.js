@@ -38,9 +38,11 @@ function IndexCtrl($scope, $http, $routeParams) {
   var read_id = '/';
   console.log("START INDEX");
   console.log($routeParams);
-  console.log('IndexCtrl pid:' + $routeParams.pid);
+  // console.log('IndexCtrl pid:' + $routeParams.pid);
 
-  
+  if (isEmpty($routeParams) == false && $routeParams.pid != undefined) {
+    read_id += $routeParams.pid + '/';
+  }  
   if (isEmpty($routeParams) == false && $routeParams.id != undefined) {
     read_id += $routeParams.id;
   }
@@ -53,32 +55,33 @@ function IndexCtrl($scope, $http, $routeParams) {
     $scope.last_read_id = data.last_read_id;
     $scope.postsOverview = data.postsOverview;
     // $scope.project_info = data.project_info[0];
-    console.log("yeah IndexCtrl ");
-    // console.log($scope.postsOverview);
-    // console.log($scope.posts);
+    // console.log("yeah IndexCtrl ");
+    // // console.log($scope.postsOverview);
+    console.log($scope.masterPosts);
+
   });
 
   WeatherCtrl($scope, $http);
 }
 
 function ProjectsCtrl($scope, $http) {
-  console.log("get all projects");
+  // console.log("get all projects");
   // $scope.projects = [ {id:0, name:'São Tomé'}, {id:1, name:'Príncipe'} ];
   $http.get('/api/posts').
   success(function(data, status, headers, config) {
     $scope.projects = data.project_info;
-    console.log($scope.projects);
+    // console.log($scope.projects);
   });
 }
 
 function AddProjectsCtrl($scope, $rootScope, $http, $location) {
-  console.log("add project");
+  // console.log("add project");
   $scope.formProject = {};
-  console.log($scope.form);
+  // console.log($scope.form);
   $scope.submitProject = function() {
     $http.post('/api/project', $scope.formProject).
     success(function(data) {
-      console.log("yeah AddProjectController!");
+      // console.log("yeah AddProjectController!");
       $location.path('/projects');
     });
   };
@@ -86,14 +89,14 @@ function AddProjectsCtrl($scope, $rootScope, $http, $location) {
   // $http.get('/api/posts').
   //   success(function(data, status, headers, config) {
   //     $scope.projects = data.project_info;
-  //     console.log($scope.projects);
+  //     // console.log($scope.projects);
   // });
 }
 
 function WeatherCtrl($scope, $http) {
   // $scope.weatherData = [ {name:'rh',value:'1'}, {name:'UV',value:'1'}, {name:'precip_today_metric',value:'1'}];
   $scope.weatherData = [];
-  console.log($scope.weatherData);
+  // console.log($scope.weatherData);
 
   var obj = {
     name: 'Relative Humidity',
@@ -115,9 +118,9 @@ function WeatherCtrl($scope, $http) {
 
   // $http.get('http://api.wunderground.com/api/fd6f92441a1e3d84/conditions/q/CV/Praia.json').
   // success(function(data) {
-  //   console.log('getting weather data');
+  //   // console.log('getting weather data');
   //   $scope.weatherData = [];
-  //   // console.log(data.current_observation.relative_humidity);
+  //   // // console.log(data.current_observation.relative_humidity);
 
   //   var obj = {
   //     name: 'Relative Humidity',
@@ -140,31 +143,31 @@ function WeatherCtrl($scope, $http) {
   //   // $scope.weatherData['UV'] = data.current_observation.UV;
   //   // $scope.weatherData['precip_today_metric'] = data.current_observation.precip_today_metric;
 
-  //   console.log($scope.weatherData);
+  //   // console.log($scope.weatherData);
   // });
 
 }
 
 function AddPostCtrl($scope, $http, $location) {
   $scope.form = {};
-  console.log('AddPostCtrl /api/post');
-  console.log($scope.form);
+  // console.log('AddPostCtrl /api/post');
+  // console.log($scope.form);
   $scope.submitPost = function() {
-    console.log('AddPostCtrl submit /api/post');
-    console.log($scope.form);
+    // console.log('AddPostCtrl submit /api/post');
+    // console.log($scope.form);
     $http.post('/api/post', $scope.form).
     success(function(data) {
-      console.log("yeah AddPostCtrl");
-      $location.path('/project/index');
+      // console.log("yeah AddPostCtrl");
+      $location.path('/project/'); // dps aqui leva com o pid
     });
   };
 
   $scope.submitInnerPost = function() {
-    console.log('AddPostCtrl submitInnerPost /api/post');
-    console.log($scope.form);
+    // console.log('AddPostCtrl submitInnerPost /api/post');
+    // console.log($scope.form);
     $http.post('/api/postInner', $scope.form).
     success(function(data) {
-      console.log("yeah AddPostCtrl");
+      // console.log("yeah AddPostCtrl");
       $location.path('/project/innerDashboard');
     });
   };
@@ -204,19 +207,19 @@ function ReadPostCtrl3($scope, $http, $routeParams) {
 
 function EditPostCtrl($scope, $http, $location, $routeParams) {
   $scope.form = {};
-  console.log("EditPostCtrl");
+  // console.log("EditPostCtrl");
   $http.get('/api/post/' + $routeParams.id).
   success(function(data) {
     $scope.form = data.post;
-    console.log(data.post);
+    // console.log(data.post);
   });
 
   $scope.editPost = function() {
     $http.put('/api/post/' + $routeParams.id, $scope.form).
     success(function(data) {
       // $location.url('/readPost/' + $routeParams.id);
-      // console.log("edit done:");
-      // console.log( data + " " + typeof(data) + " " + parseInt(data) + " " + Number(data));
+      // // console.log("edit done:");
+      // // console.log( data + " " + typeof(data) + " " + parseInt(data) + " " + Number(data));
       $location.path('/project/innerDashboard/0/' + data);
     });
   };
@@ -236,7 +239,7 @@ function DeletePostCtrl($scope, $http, $location, $routeParams) {
   };
 
   $scope.home = function() {
-    console.log("home function")
+    // console.log("home function")
     $location.url('/');
   };
 }
@@ -262,7 +265,7 @@ function ExampleCtrl($scope) {
 
 
 function HomeCtrl($scope, $location) {
-  console.log("home ctrl")
+  // console.log("home ctrl")
   $location.url('/');
 }
 
@@ -298,11 +301,11 @@ function BulletCtrl($scope) {
 
 
 // function GeoApiIndex($scope, $http, $routeParams){
-//   console.log("lwlwllwlawa");
+//   // console.log("lwlwllwlawa");
 // }
 
 function ActivitiesCtrl($scope, $http) {
-  console.log('ActivitiesCtrl');
+  // console.log('ActivitiesCtrl');
 }
 
 function CalendarCtrl($scope, $http) {
@@ -318,13 +321,13 @@ function CalendarCtrl($scope, $http) {
     // read from api
     $http.get('/api/nextActivity/').
       success(function(data) {
-        console.log("data is ");
-        console.log(data.nextActivity);
+        // console.log("data is ");
+        // console.log(data.nextActivity);
         $scope.nextActivity = data.nextActivity;
         $scope.nextStart = data.nextStart;
-        console.log("NEXT ACTIVITYYYYYYYY:");
-        console.log($scope.nextStart);
-        console.log($scope.events[0].start);
+        // console.log("NEXT ACTIVITYYYYYYYY:");
+        // console.log($scope.nextStart);
+        // console.log($scope.events[0].start);
         $scope.events[0].start = $scope.nextStart;
       });
   
@@ -332,40 +335,40 @@ function CalendarCtrl($scope, $http) {
   
 
   $scope.alertOnDrop = function(elem){
-    console.log("dropped event");
-    console.log("nextActivity:");
-    console.log($scope.nextActivity);
-    // console.log(elem);
-    // console.log( elem.start );
-    // console.log( typeof(elem.start) );
+    // console.log("dropped event");
+    // console.log("nextActivity:");
+    // console.log($scope.nextActivity);
+    // // console.log(elem);
+    // // console.log( elem.start );
+    // // console.log( typeof(elem.start) );
     // for(var p in (elem.start) ){
     //   if ((elem.start).hasOwnProperty(p) ) {
-    //     console.log(p + " " + elem.start[p]);
+    //     // console.log(p + " " + elem.start[p]);
     //   }
     // };
     var dateDropped = new Date(elem.start);
-    // console.log(dateDropped.getDate());
+    // // console.log(dateDropped.getDate());
     var nextActivity = { name: 'Water Sampling', day: String(dateDropped.getDate()), month: 'May', year: '2014' };
     var togo = {'nextActivity':nextActivity, 'nextStart':elem.start}
 
     $http.post('/api/nextActivity/', togo).
       success(function(data) {
-        console.log("yeah postNextActivity!");
+        // console.log("yeah postNextActivity!");
         // $location.path('/projects');
       });
 
-    console.log("nextActivity:");
-    console.log($scope.nextActivity);
+    // console.log("nextActivity:");
+    // console.log($scope.nextActivity);
   };
 
   $scope.alertDayClick = function(date, allDay, jsEvent, view){
     if (allDay) {
-        console.log('Clicked on the entire day: ' + date);
+        // console.log('Clicked on the entire day: ' + date);
     }else{
-        console.log('Clicked on the slot: ' + date);
+        // console.log('Clicked on the slot: ' + date);
     }
     $scope.events.push({title:$scope.activityToAdd, start:date});
-    console.log($scope.events);
+    // console.log($scope.events);
   };
 
   $scope.activityToAdd = '';
